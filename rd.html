@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>R&amp;D Objectives — NexWave Programme Hub</title>
+<style>
+  /* ===== SHARED TOKENS START — keep identical across all pages ===== */
+  :root {
+    --bg: #EEF0EA; --bg-raised: #F9FAF5; --bg-sunken: #E4E7DD;
+    --text: #172436; --text-soft: #55637A; --text-faint: #8993A4;
+    --line: rgba(23,36,54,0.16); --line-soft: rgba(23,36,54,0.08);
+    --accent: #D3552E; --accent-soft: rgba(211,85,46,0.13); --accent-text: #B8461F;
+    --vendor: #2F5D7C; --vendor-soft: rgba(47,93,124,0.12); --vendor-text: #24485F;
+    --mbie: #6B4C82; --mbie-soft: rgba(107,76,130,0.12); --mbie-text: #593D6C;
+    --rag-green: #3F6E52; --rag-green-soft: rgba(63,110,82,0.14);
+    --rag-amber: #A8791F; --rag-amber-soft: rgba(168,121,31,0.16);
+    --rag-red: #8E3B47; --rag-red-soft: rgba(142,59,71,0.14);
+    --rag-grey: #7C8698; --rag-grey-soft: rgba(124,134,152,0.14);
+    --font-display: "Futura", "Century Gothic", "Helvetica Neue", Arial, sans-serif;
+    --font-body: "Helvetica Neue", Arial, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0E2A46; --bg-raised: #123457; --bg-sunken: #0A2038;
+      --text: #EAF1FB; --text-soft: #9FBBD6; --text-faint: #6D89A8;
+      --line: rgba(234,241,251,0.20); --line-soft: rgba(234,241,251,0.09);
+      --accent: #F2865A; --accent-soft: rgba(242,134,90,0.18); --accent-text: #F7A582;
+      --vendor: #7FA8D9; --vendor-soft: rgba(127,168,217,0.18); --vendor-text: #A4C4E8;
+      --mbie: #C79FE0; --mbie-soft: rgba(199,159,224,0.18); --mbie-text: #D8BBEE;
+      --rag-green: #6FCB9A; --rag-green-soft: rgba(111,203,154,0.16);
+      --rag-amber: #E2B15C; --rag-amber-soft: rgba(226,177,92,0.16);
+      --rag-red: #E8899A; --rag-red-soft: rgba(232,137,154,0.16);
+      --rag-grey: #7E93AC; --rag-grey-soft: rgba(126,147,172,0.18);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0E2A46; --bg-raised: #123457; --bg-sunken: #0A2038;
+    --text: #EAF1FB; --text-soft: #9FBBD6; --text-faint: #6D89A8;
+    --line: rgba(234,241,251,0.20); --line-soft: rgba(234,241,251,0.09);
+    --accent: #F2865A; --accent-soft: rgba(242,134,90,0.18); --accent-text: #F7A582;
+    --vendor: #7FA8D9; --vendor-soft: rgba(127,168,217,0.18); --vendor-text: #A4C4E8;
+    --mbie: #C79FE0; --mbie-soft: rgba(199,159,224,0.18); --mbie-text: #D8BBEE;
+    --rag-green: #6FCB9A; --rag-green-soft: rgba(111,203,154,0.16);
+    --rag-amber: #E2B15C; --rag-amber-soft: rgba(226,177,92,0.16);
+    --rag-red: #E8899A; --rag-red-soft: rgba(232,137,154,0.16);
+    --rag-grey: #7E93AC; --rag-grey-soft: rgba(126,147,172,0.18);
+  }
+  :root[data-theme="light"] {
+    --bg: #EEF0EA; --bg-raised: #F9FAF5; --bg-sunken: #E4E7DD;
+    --text: #172436; --text-soft: #55637A; --text-faint: #8993A4;
+    --line: rgba(23,36,54,0.16); --line-soft: rgba(23,36,54,0.08);
+    --accent: #D3552E; --accent-soft: rgba(211,85,46,0.13); --accent-text: #B8461F;
+    --vendor: #2F5D7C; --vendor-soft: rgba(47,93,124,0.12); --vendor-text: #24485F;
+    --mbie: #6B4C82; --mbie-soft: rgba(107,76,130,0.12); --mbie-text: #593D6C;
+    --rag-green: #3F6E52; --rag-green-soft: rgba(63,110,82,0.14);
+    --rag-amber: #A8791F; --rag-amber-soft: rgba(168,121,31,0.16);
+    --rag-red: #8E3B47; --rag-red-soft: rgba(142,59,71,0.14);
+    --rag-grey: #7C8698; --rag-grey-soft: rgba(124,134,152,0.14);
+  }
+  * { box-sizing: border-box; }
+  html, body { background: var(--bg); color: var(--text); font-family: var(--font-body); margin: 0; }
+  ::selection { background: var(--accent-soft); }
+  a { color: var(--vendor-text); }
+  @media (prefers-reduced-motion: no-preference) {
+    .page { animation: settle 380ms ease-out; }
+    @keyframes settle { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+  }
+
+  .site-nav { position: sticky; top: 0; z-index: 20; background: var(--bg-raised); border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 24px; }
+  .site-nav-brand { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--text); text-decoration: none; padding: 14px 0; letter-spacing: -0.01em; }
+  .site-nav-links { display: flex; gap: 2px; }
+  .site-nav-links a { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--text-soft); text-decoration: none; padding: 18px 14px; border-bottom: 2px solid transparent;
+    transition: color 150ms ease, border-color 150ms ease; }
+  .site-nav-links a:hover { color: var(--text); }
+  .site-nav-links a:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .site-nav-links a.-active { color: var(--accent-text); border-bottom-color: var(--accent); }
+  @media (max-width: 640px) {
+    .site-nav { flex-wrap: wrap; padding: 10px 16px; }
+    .site-nav-links { gap: 0; flex-wrap: wrap; }
+    .site-nav-links a { padding: 8px 10px; }
+  }
+  /* ===== SHARED TOKENS END ===== */
+
+  .page { max-width: 1180px; margin: 0 auto; padding: 36px 24px 64px; }
+  .wayfind { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; color: var(--text-soft); margin-bottom: 18px; }
+  .wayfind a { color: var(--text-soft); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 1px; }
+  .wayfind a:hover, .wayfind a:focus-visible { color: var(--accent-text); border-color: var(--accent-text); }
+
+  .titleblock { border-bottom: 2px solid var(--text); padding-bottom: 16px; margin-bottom: 26px; }
+  .kicker { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-soft); margin-bottom: 5px; }
+  .titleblock h1 { font-family: var(--font-display); font-weight: 700; font-size: 30px; letter-spacing: -0.01em; margin: 0 0 8px; text-wrap: balance; }
+  .titleblock p { font-size: 13.5px; line-height: 1.6; color: var(--text-soft); max-width: 74ch; margin: 0; }
+  .titleblock p strong { color: var(--text); font-weight: 600; }
+
+  .obj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  @media (max-width: 760px) { .obj-grid { grid-template-columns: 1fr; } }
+  .ocard { background: var(--bg-raised); border: 1px solid var(--line); border-radius: 5px; padding: 17px 18px 18px; display: flex; flex-direction: column; gap: 10px; text-decoration: none; color: var(--text); transition: border-color 150ms ease; }
+  .ocard:hover { border-color: var(--accent); }
+  .ocard:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .ocard.-dormant { opacity: 0.68; }
+  .ocard-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+  .ocard-num { font-family: var(--font-mono); font-size: 10.5px; color: var(--text-faint); letter-spacing: 0.04em; }
+  .ocard-name { font-family: var(--font-display); font-weight: 700; font-size: 15.5px; margin-top: 2px; }
+  .ocard-period { font-family: var(--font-mono); font-size: 10.5px; color: var(--text-faint); text-align: right; white-space: nowrap; }
+  .status-pill { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 4px 9px 4px 8px; border-radius: 3px; width: fit-content; }
+  .status-pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .status-pill.-green { background: var(--rag-green-soft); color: var(--rag-green); } .status-pill.-green::before { background: var(--rag-green); }
+  .status-pill.-amber { background: var(--rag-amber-soft); color: var(--rag-amber); } .status-pill.-amber::before { background: var(--rag-amber); }
+  .status-pill.-grey { background: var(--rag-grey-soft); color: var(--rag-grey); } .status-pill.-grey::before { background: var(--rag-grey); }
+  .ocard-desc { font-size: 12.5px; line-height: 1.55; color: var(--text-soft); }
+  .ocard-go { font-family: var(--font-mono); font-size: 10.5px; color: var(--text-faint); margin-top: auto; padding-top: 4px; }
+
+  .sandbox-strip { margin-top: 14px; background: var(--bg-sunken); border-radius: 4px; padding: 12px 16px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .sandbox-strip .label { font-family: var(--font-mono); font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-faint); }
+  .sandbox-strip .detail { font-size: 12px; color: var(--text-soft); }
+  .sandbox-strip .detail strong { color: var(--text); }
+
+  .foot { margin-top: 34px; padding-top: 18px; border-top: 1px solid var(--line-soft); font-size: 11.5px; color: var(--text-faint); line-height: 1.65; max-width: 82ch; font-family: var(--font-mono); }
+</style>
+</head>
+<body>
+
+<!-- SHARED NAV START -->
+<nav class="site-nav">
+  <a class="site-nav-brand" href="index.html">NexWave R&amp;D</a>
+  <div class="site-nav-links">
+    <a href="index.html">Home</a>
+    <a href="vendors.html">CD Vendors</a>
+    <a href="milestones.html">Milestones</a>
+    <a href="rd.html" class="-active">R&amp;D Objectives</a>
+    <a href="orientation.html">Orientation</a>
+  </div>
+</nav>
+<!-- SHARED NAV END -->
+
+<div class="page">
+
+  <div class="wayfind">
+    <span>NexWave R&amp;D &middot; domain-rd</span>
+    <a href="milestones.html">Need the whole calendar instead? &rarr; Milestone View</a>
+  </div>
+
+  <div class="titleblock">
+    <div class="kicker">nexwave-rd &middot; domain-rd &middot; objective orientation</div>
+    <h1>Four objectives, one build</h1>
+    <p>The research behind NexWave Health: four sequential objectives running to March 2028, each unlocking
+      when the one before it clears. <strong>Objective 1 is the only one live right now.</strong> Click through
+      for the full picture, there's too much in each one to fit on a card.</p>
+  </div>
+
+  <div class="obj-grid">
+    <a class="ocard" href="obj1.html">
+      <div class="ocard-top">
+        <div><div class="ocard-num">OBJECTIVE 1</div><div class="ocard-name">Foundation AI Architecture</div></div>
+        <div class="ocard-period">Months 1&ndash;6<br>12 Mar &ndash; 11 Sep 2026</div>
+      </div>
+      <span class="status-pill -amber">In progress</span>
+      <div class="ocard-desc">Architecture v2 drafted, Claude on Bedrock Auckland as the primary candidate.
+        Bake-off pending the synthetic dataset and GP labelling.</div>
+      <div class="ocard-go">View detail &rarr;</div>
+    </a>
+
+    <div class="ocard -dormant">
+      <div class="ocard-top">
+        <div><div class="ocard-num">OBJECTIVE 2</div><div class="ocard-name">Inbox Data Handling</div></div>
+        <div class="ocard-period">Months 4&ndash;12<br>12 Jun 2026 &ndash; 11 Mar 2027</div>
+      </div>
+      <span class="status-pill -grey">Not started</span>
+      <div class="ocard-desc">Spins up once Objective 1's architecture decision clears the bake-off.</div>
+    </div>
+
+    <div class="ocard -dormant">
+      <div class="ocard-top">
+        <div><div class="ocard-num">OBJECTIVE 3</div><div class="ocard-name">Care Gap Detection</div></div>
+        <div class="ocard-period">Months 7&ndash;16<br>12 Sep 2026 &ndash; 11 Jul 2027</div>
+      </div>
+      <span class="status-pill -grey">Not started</span>
+      <div class="ocard-desc">Population-health detection work, sequenced after Objective 2.</div>
+    </div>
+
+    <div class="ocard -dormant">
+      <div class="ocard-top">
+        <div><div class="ocard-num">OBJECTIVE 4</div><div class="ocard-name">Real-World Deployment</div></div>
+        <div class="ocard-period">Months 16&ndash;24<br>12 Jun 2027 &ndash; 11 Mar 2028</div>
+      </div>
+      <span class="status-pill -grey">Not started</span>
+      <div class="ocard-desc">Trialling in practices, the final stretch to March 2028.</div>
+    </div>
+  </div>
+
+  <div class="sandbox-strip">
+    <span class="label">Cross-cutting</span>
+    <span class="detail"><strong>Sandbox environments</strong> &middot; Medtech connection in progress &middot; Indici at risk (Valentia silent)</span>
+  </div>
+
+  <p class="foot">Source: overview-rd.md, 13 Jul 2026. Objective 2-4 pages get built out once each one actually
+    spins up, an empty dashboard for unstarted work isn't worth maintaining.</p>
+</div>
+</body>
+</html>

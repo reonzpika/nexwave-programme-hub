@@ -4,48 +4,70 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>NexWave Programme Hub</title>
+<title>NexWave Health — NexWave Programme Hub</title>
 <style>
-  /* ===== SHARED TOKENS START — keep identical across all 4 pages ===== */
+  /* ===== SHARED TOKENS START — keep identical across all pages ===== */
   :root {
-    --bg: #EEF0EA; --bg-raised: #F9FAF5; --text: #172436; --text-soft: #55637A;
-    --line: rgba(23,36,54,0.18); --line-soft: rgba(23,36,54,0.09);
-    --accent: #D3552E; --accent-soft: rgba(211,85,46,0.15); --accent-text: #B8461F;
-    --vendor: #2F5D7C; --vendor-text: #24485F;
-    --mbie: #6B4C82; --mbie-text: #593D6C;
-    --rag-green: #3F6E52; --rag-amber: #A8791F;
+    --bg: #EEF0EA; --bg-raised: #F9FAF5; --bg-sunken: #E4E7DD;
+    --text: #172436; --text-soft: #55637A; --text-faint: #8993A4;
+    --line: rgba(23,36,54,0.16); --line-soft: rgba(23,36,54,0.08);
+    --accent: #D3552E; --accent-soft: rgba(211,85,46,0.13); --accent-text: #B8461F;
+    --vendor: #2F5D7C; --vendor-soft: rgba(47,93,124,0.12); --vendor-text: #24485F;
+    --mbie: #6B4C82; --mbie-soft: rgba(107,76,130,0.12); --mbie-text: #593D6C;
+    --rag-green: #3F6E52; --rag-green-soft: rgba(63,110,82,0.14);
+    --rag-amber: #A8791F; --rag-amber-soft: rgba(168,121,31,0.16);
+    --rag-red: #8E3B47; --rag-red-soft: rgba(142,59,71,0.14);
+    --rag-grey: #7C8698; --rag-grey-soft: rgba(124,134,152,0.14);
     --font-display: "Futura", "Century Gothic", "Helvetica Neue", Arial, sans-serif;
     --font-body: "Helvetica Neue", Arial, sans-serif;
     --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", Consolas, monospace;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #0E2A46; --bg-raised: #123457; --text: #EAF1FB; --text-soft: #9FBBD6;
+      --bg: #0E2A46; --bg-raised: #123457; --bg-sunken: #0A2038;
+      --text: #EAF1FB; --text-soft: #9FBBD6; --text-faint: #6D89A8;
       --line: rgba(234,241,251,0.20); --line-soft: rgba(234,241,251,0.09);
       --accent: #F2865A; --accent-soft: rgba(242,134,90,0.18); --accent-text: #F7A582;
-      --vendor: #7FA8D9; --vendor-text: #A4C4E8;
-      --mbie: #C79FE0; --mbie-text: #D8BBEE;
-      --rag-green: #6FCB9A; --rag-amber: #E2B15C;
+      --vendor: #7FA8D9; --vendor-soft: rgba(127,168,217,0.18); --vendor-text: #A4C4E8;
+      --mbie: #C79FE0; --mbie-soft: rgba(199,159,224,0.18); --mbie-text: #D8BBEE;
+      --rag-green: #6FCB9A; --rag-green-soft: rgba(111,203,154,0.16);
+      --rag-amber: #E2B15C; --rag-amber-soft: rgba(226,177,92,0.16);
+      --rag-red: #E8899A; --rag-red-soft: rgba(232,137,154,0.16);
+      --rag-grey: #7E93AC; --rag-grey-soft: rgba(126,147,172,0.18);
     }
   }
   :root[data-theme="dark"] {
-    --bg: #0E2A46; --bg-raised: #123457; --text: #EAF1FB; --text-soft: #9FBBD6;
+    --bg: #0E2A46; --bg-raised: #123457; --bg-sunken: #0A2038;
+    --text: #EAF1FB; --text-soft: #9FBBD6; --text-faint: #6D89A8;
     --line: rgba(234,241,251,0.20); --line-soft: rgba(234,241,251,0.09);
     --accent: #F2865A; --accent-soft: rgba(242,134,90,0.18); --accent-text: #F7A582;
-    --vendor: #7FA8D9; --vendor-text: #A4C4E8;
-    --mbie: #C79FE0; --mbie-text: #D8BBEE;
-    --rag-green: #6FCB9A; --rag-amber: #E2B15C;
+    --vendor: #7FA8D9; --vendor-soft: rgba(127,168,217,0.18); --vendor-text: #A4C4E8;
+    --mbie: #C79FE0; --mbie-soft: rgba(199,159,224,0.18); --mbie-text: #D8BBEE;
+    --rag-green: #6FCB9A; --rag-green-soft: rgba(111,203,154,0.16);
+    --rag-amber: #E2B15C; --rag-amber-soft: rgba(226,177,92,0.16);
+    --rag-red: #E8899A; --rag-red-soft: rgba(232,137,154,0.16);
+    --rag-grey: #7E93AC; --rag-grey-soft: rgba(126,147,172,0.18);
   }
   :root[data-theme="light"] {
-    --bg: #EEF0EA; --bg-raised: #F9FAF5; --text: #172436; --text-soft: #55637A;
-    --line: rgba(23,36,54,0.18); --line-soft: rgba(23,36,54,0.09);
-    --accent: #D3552E; --accent-soft: rgba(211,85,46,0.15); --accent-text: #B8461F;
-    --vendor: #2F5D7C; --vendor-text: #24485F;
-    --mbie: #6B4C82; --mbie-text: #593D6C;
-    --rag-green: #3F6E52; --rag-amber: #A8791F;
+    --bg: #EEF0EA; --bg-raised: #F9FAF5; --bg-sunken: #E4E7DD;
+    --text: #172436; --text-soft: #55637A; --text-faint: #8993A4;
+    --line: rgba(23,36,54,0.16); --line-soft: rgba(23,36,54,0.08);
+    --accent: #D3552E; --accent-soft: rgba(211,85,46,0.13); --accent-text: #B8461F;
+    --vendor: #2F5D7C; --vendor-soft: rgba(47,93,124,0.12); --vendor-text: #24485F;
+    --mbie: #6B4C82; --mbie-soft: rgba(107,76,130,0.12); --mbie-text: #593D6C;
+    --rag-green: #3F6E52; --rag-green-soft: rgba(63,110,82,0.14);
+    --rag-amber: #A8791F; --rag-amber-soft: rgba(168,121,31,0.16);
+    --rag-red: #8E3B47; --rag-red-soft: rgba(142,59,71,0.14);
+    --rag-grey: #7C8698; --rag-grey-soft: rgba(124,134,152,0.14);
   }
   * { box-sizing: border-box; }
   html, body { background: var(--bg); color: var(--text); font-family: var(--font-body); margin: 0; }
+  ::selection { background: var(--accent-soft); }
+  a { color: var(--vendor-text); }
+  @media (prefers-reduced-motion: no-preference) {
+    .page { animation: settle 380ms ease-out; }
+    @keyframes settle { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+  }
 
   .site-nav { position: sticky; top: 0; z-index: 20; background: var(--bg-raised); border-bottom: 1px solid var(--line);
     display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 24px; }
@@ -64,27 +86,49 @@
   }
   /* ===== SHARED TOKENS END ===== */
 
-  .page { max-width: 900px; margin: 0 auto; padding: 64px 24px 80px; }
+  .page { max-width: 1040px; margin: 0 auto; padding: 40px 24px 70px; }
+  .kicker { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-soft); margin-bottom: 8px; }
+  .titleblock { border-bottom: 2px solid var(--text); padding-bottom: 16px; margin-bottom: 28px; }
+  .titleblock h1 { font-family: var(--font-display); font-weight: 700; font-size: 32px; letter-spacing: -0.01em; margin: 0 0 8px; text-wrap: balance; }
+  .titleblock p { font-size: 13.5px; line-height: 1.6; color: var(--text-soft); max-width: 74ch; margin: 0; }
+  .titleblock p strong { color: var(--text); font-weight: 600; }
 
-  .kicker { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-soft); margin-bottom: 10px; }
-  h1 { font-family: var(--font-display); font-weight: 700; font-size: 34px; letter-spacing: -0.01em; margin: 0 0 16px; text-wrap: balance; }
-  .lede { font-size: 15.5px; line-height: 1.65; color: var(--text-soft); max-width: 68ch; margin: 0 0 48px; }
-  .lede strong { color: var(--text); font-weight: 600; }
+  h2.section-h { font-family: var(--font-display); font-weight: 700; font-size: 15px; margin: 0 0 14px; }
+  .two-col { display: grid; grid-template-columns: 1.3fr 1fr; gap: 44px; }
+  @media (max-width: 760px) { .two-col { grid-template-columns: 1fr; } }
+  section + section { margin-top: 34px; }
 
-  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  @media (max-width: 720px) { .cards { grid-template-columns: 1fr; } }
+  .now-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+  .now-list li { font-size: 13px; line-height: 1.6; color: var(--text-soft); padding-left: 16px; border-left: 2px solid var(--line); }
+  .now-list li strong { color: var(--text); font-weight: 600; }
+  .now-list.-blockers li { border-left-color: var(--rag-amber); }
 
-  .card { background: var(--bg-raised); border: 1px solid var(--line); border-radius: 6px; padding: 22px 22px 24px;
-    text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 10px;
-    transition: border-color 150ms ease, transform 150ms ease; }
-  .card:hover { border-color: var(--accent); transform: translateY(-2px); }
-  .card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-  .card-eyebrow { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-text); }
-  .card-title { font-family: var(--font-display); font-weight: 700; font-size: 18px; }
-  .card-desc { font-size: 13px; line-height: 1.55; color: var(--text-soft); }
-  .card-go { font-family: var(--font-mono); font-size: 11px; color: var(--text-faint, var(--text-soft)); margin-top: auto; padding-top: 6px; }
+  table.plain { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  table.plain th { text-align: left; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-faint); font-weight: 600; padding: 0 0 8px; border-bottom: 1px solid var(--line); }
+  table.plain td { padding: 9px 0; border-bottom: 1px solid var(--line-soft); vertical-align: top; color: var(--text-soft); }
+  table.plain td:first-child { font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--text); white-space: nowrap; padding-right: 16px; }
+  table.plain td strong { color: var(--text); font-weight: 600; }
 
-  .foot { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line-soft); font-size: 11.5px; color: var(--text-soft); line-height: 1.6; max-width: 82ch; font-family: var(--font-mono); }
+  .products { display: flex; flex-direction: column; gap: 12px; }
+  .product { background: var(--bg-raised); border: 1px solid var(--line); border-radius: 5px; padding: 14px 16px; }
+  .product-name { font-weight: 700; font-size: 13.5px; margin-bottom: 4px; }
+  .product-desc { font-size: 12px; line-height: 1.55; color: var(--text-soft); }
+  .product-target { font-family: var(--font-mono); font-size: 10.5px; color: var(--vendor-text); margin-top: 6px; }
+
+  .domains { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 14px; }
+  @media (max-width: 760px) { .domains { grid-template-columns: 1fr; } }
+  .domain-card { background: var(--bg-raised); border: 1px solid var(--line); border-radius: 5px; padding: 15px 16px; }
+  .domain-name { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 6px; }
+  .domain-state { font-size: 12px; line-height: 1.5; color: var(--text-soft); }
+
+  dl.facts { margin: 0; display: flex; flex-direction: column; gap: 9px; }
+  dl.facts div { display: flex; gap: 10px; font-size: 12.5px; padding-bottom: 9px; border-bottom: 1px solid var(--line-soft); }
+  dl.facts dt { font-family: var(--font-mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-faint); flex: 0 0 108px; }
+  dl.facts dd { margin: 0; color: var(--text); }
+  .contact-row { display: flex; justify-content: space-between; gap: 10px; font-size: 12px; padding: 7px 0; border-bottom: 1px solid var(--line-soft); color: var(--text-soft); }
+  .contact-row b { color: var(--text); font-weight: 600; }
+
+  .foot { margin-top: 34px; padding-top: 18px; border-top: 1px solid var(--line-soft); font-size: 11.5px; color: var(--text-faint); line-height: 1.65; max-width: 82ch; font-family: var(--font-mono); }
 </style>
 </head>
 <body>
@@ -96,42 +140,111 @@
     <a href="index.html" class="-active">Home</a>
     <a href="vendors.html">CD Vendors</a>
     <a href="milestones.html">Milestones</a>
+    <a href="rd.html">R&amp;D Objectives</a>
     <a href="orientation.html">Orientation</a>
   </div>
 </nav>
 <!-- SHARED NAV END -->
 
 <div class="page">
-  <div class="kicker">nexwave-rd &middot; programme hub</div>
-  <h1>NexWave Programme Hub</h1>
-  <p class="lede">Three views into the NexWave Health R&amp;D programme, an MBIE-funded two-year build of
-    NZ-owned clinical AI for general practice. Pick a tab: <strong>who owes who a reply</strong> on
-    vendor conversations, <strong>where everything sits on the calendar</strong>, or <strong>a plain-English
-    orientation</strong> to the whole programme.</p>
-
-  <div class="cards">
-    <a class="card" href="vendors.html">
-      <div class="card-eyebrow">Status</div>
-      <div class="card-title">CD Vendors</div>
-      <div class="card-desc">Every active Capability Development vendor conversation, with a ball-in-court badge showing whether it's your move, the vendor's, or MBIE's.</div>
-      <div class="card-go">Open &rarr;</div>
-    </a>
-    <a class="card" href="milestones.html">
-      <div class="card-eyebrow">Timeline</div>
-      <div class="card-title">Milestone View</div>
-      <div class="card-desc">A Gantt view across all four R&amp;D objectives, the three CD streams, and the MBIE quarterly-claims cadence. Click any bar or diamond for detail.</div>
-      <div class="card-go">Open &rarr;</div>
-    </a>
-    <a class="card" href="orientation.html">
-      <div class="card-eyebrow">Reference</div>
-      <div class="card-title">Getting Oriented</div>
-      <div class="card-desc">Why the programme exists, how the work is organised into three domains, and the eight funded objectives, opened one click at a time.</div>
-      <div class="card-go">Open &rarr;</div>
-    </a>
+  <div class="titleblock">
+    <div class="kicker">nexwave-rd &middot; programme control panel</div>
+    <h1>NexWave Health</h1>
+    <p>NZ-sovereign clinical AI for GP workflow, validated in NZ general practice. Two tools:
+      <strong>Inbox Helper</strong> and <strong>Care Gap Finder</strong>. MBIE-funded R&amp;D, 24 months to
+      March 2028. Founder is a practising GP and full-stack developer. Partner: Medtech (~60% NZ PMS share).</p>
   </div>
 
-  <p class="foot">Prepared 13 Jul 2026, ahead of Delytics Session 1 (15 Jul). Not a live feed, each page notes
-    its own source and last reconciliation date.</p>
+  <div class="two-col">
+    <div>
+      <section>
+        <h2 class="section-h">Focus</h2>
+        <ul class="now-list">
+          <li><strong>Stage 2 data-quality pass is the gate on GP labelling.</strong> Regenerate ~352
+            narratives after clinical sign-off, then the full GP labelling pass opens, the bake-off's
+            critical path. 72 days to 11&nbsp;Sep&nbsp;2026.</li>
+          <li><strong>Q1 MBIE claim resubmitted 25 Jun</strong>, awaiting MBIE review. $29,631.26 (40%) on
+            $74,078.15 eligible spend.</li>
+          <li><strong>CD next: self-author the Privacy Impact Assessment.</strong> R2 privacy review decided
+            (Gen Privacy, $5k hybrid), awaiting Lisa's reply on the budget increase. CD-3: revise Ting's
+            scan-signal list before Session&nbsp;1, Wed&nbsp;15&nbsp;Jul.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="section-h">Blockers</h2>
+        <ul class="now-list -blockers">
+          <li>CD-2 international vendors: enquiries out to API Connects, Addepto, Mistral AI, waiting on replies before the MBIE package can be assembled.</li>
+          <li>Architecture bake-off waiting on GP labelling to unblock the synthetic dataset.</li>
+          <li>R2 privacy engagement decided, waiting on Lisa's reply to the budget increase before Amelia can be confirmed.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="section-h">Next deadlines</h2>
+        <table class="plain">
+          <tr><th>Date</th><th>Item</th></tr>
+          <tr><td>31 Aug 2026</td><td>Q2 MBIE claim</td></tr>
+          <tr><td>11 Sep 2026</td><td><strong>Obj 1 deliverables complete</strong> &mdash; architecture, prototypes, sandboxes</td></tr>
+        </table>
+      </section>
+    </div>
+
+    <div>
+      <section>
+        <h2 class="section-h">Products</h2>
+        <div class="products">
+          <div class="product">
+            <div class="product-name">Inbox Helper</div>
+            <div class="product-desc">Reads every incoming inbox item (labs, radiology, discharge summaries, specialist letters, portal messages) and assigns an urgency level, so the GP works the queue by what needs attention, not arrival order.</div>
+            <div class="product-target">Target: &ge;90% triage accuracy &middot; &ge;99% sensitivity on critical findings</div>
+          </div>
+          <div class="product">
+            <div class="product-name">Care Gap Finder</div>
+            <div class="product-desc">Continuously scans the enrolled register and surfaces patients overdue for diabetes, CVD-risk, and other key checks, as they fall due rather than only when a nurse runs a report.</div>
+            <div class="product-target">Target: &ge;95% CVDRA accuracy</div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-h">Facts</h2>
+        <dl class="facts">
+          <div><dt>Contract</dt><dd>CONT-109091-N2RD-NSIWKC</dd></div>
+          <div><dt>Term</dt><dd>12 Mar 2026 &ndash; 11 Mar 2028 (24 months)</dd></div>
+          <div><dt>Partner</dt><dd>Medtech Global (~60% NZ PMS share)</dd></div>
+          <div><dt>MBIE contact</dt><dd>Lisa Pritchard</dd></div>
+        </dl>
+      </section>
+
+      <section>
+        <h2 class="section-h">Key contacts</h2>
+        <div class="contact-row"><b>Lisa Pritchard</b><span>MBIE Innovation Services</span></div>
+        <div class="contact-row"><b>Ting (Shih-Ting Chou)</b><span>R&amp;D Programme Manager</span></div>
+        <div class="contact-row"><b>Helen Yu</b><span>Accountant, financial only</span></div>
+      </section>
+    </div>
+  </div>
+
+  <section>
+    <h2 class="section-h">Domains</h2>
+    <div class="domains">
+      <div class="domain-card">
+        <div class="domain-name">R&amp;D</div>
+        <div class="domain-state">Obj 1 active: architecture v2 drafted, bake-off pending synthetic dataset and GP labelling. Obj 2-4 run sequentially to 2028. &rarr; <a href="rd.html">Objectives</a></div>
+      </div>
+      <div class="domain-card">
+        <div class="domain-name">Capability Development</div>
+        <div class="domain-state">$36k across 3 streams, 9 locked line items, zero spend to date. &rarr; <a href="vendors.html">Vendor status</a></div>
+      </div>
+      <div class="domain-card">
+        <div class="domain-name">Programme Operations</div>
+        <div class="domain-state">Q1 claim resubmitted 25 Jun, awaiting MBIE review. Payroll, finance, GST, MBIE relationship.</div>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot">Source: index-nexwave-rd.md, 13 Jul 2026. Not a live feed, rebuilt when the vault state moves materially.</p>
 </div>
 </body>
 </html>
