@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>NexWave Programme Hub</title>
+<style>
+  /* ===== SHARED TOKENS START — keep identical across all 4 pages ===== */
+  :root {
+    --bg: #EEF0EA; --bg-raised: #F9FAF5; --text: #172436; --text-soft: #55637A;
+    --line: rgba(23,36,54,0.18); --line-soft: rgba(23,36,54,0.09);
+    --accent: #D3552E; --accent-soft: rgba(211,85,46,0.15); --accent-text: #B8461F;
+    --vendor: #2F5D7C; --vendor-text: #24485F;
+    --mbie: #6B4C82; --mbie-text: #593D6C;
+    --rag-green: #3F6E52; --rag-amber: #A8791F;
+    --font-display: "Futura", "Century Gothic", "Helvetica Neue", Arial, sans-serif;
+    --font-body: "Helvetica Neue", Arial, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0E2A46; --bg-raised: #123457; --text: #EAF1FB; --text-soft: #9FBBD6;
+      --line: rgba(234,241,251,0.20); --line-soft: rgba(234,241,251,0.09);
+      --accent: #F2865A; --accent-soft: rgba(242,134,90,0.18); --accent-text: #F7A582;
+      --vendor: #7FA8D9; --vendor-text: #A4C4E8;
+      --mbie: #C79FE0; --mbie-text: #D8BBEE;
+      --rag-green: #6FCB9A; --rag-amber: #E2B15C;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0E2A46; --bg-raised: #123457; --text: #EAF1FB; --text-soft: #9FBBD6;
+    --line: rgba(234,241,251,0.20); --line-soft: rgba(234,241,251,0.09);
+    --accent: #F2865A; --accent-soft: rgba(242,134,90,0.18); --accent-text: #F7A582;
+    --vendor: #7FA8D9; --vendor-text: #A4C4E8;
+    --mbie: #C79FE0; --mbie-text: #D8BBEE;
+    --rag-green: #6FCB9A; --rag-amber: #E2B15C;
+  }
+  :root[data-theme="light"] {
+    --bg: #EEF0EA; --bg-raised: #F9FAF5; --text: #172436; --text-soft: #55637A;
+    --line: rgba(23,36,54,0.18); --line-soft: rgba(23,36,54,0.09);
+    --accent: #D3552E; --accent-soft: rgba(211,85,46,0.15); --accent-text: #B8461F;
+    --vendor: #2F5D7C; --vendor-text: #24485F;
+    --mbie: #6B4C82; --mbie-text: #593D6C;
+    --rag-green: #3F6E52; --rag-amber: #A8791F;
+  }
+  * { box-sizing: border-box; }
+  html, body { background: var(--bg); color: var(--text); font-family: var(--font-body); margin: 0; }
+
+  .site-nav { position: sticky; top: 0; z-index: 20; background: var(--bg-raised); border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 24px; }
+  .site-nav-brand { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--text); text-decoration: none; padding: 14px 0; letter-spacing: -0.01em; }
+  .site-nav-links { display: flex; gap: 2px; }
+  .site-nav-links a { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--text-soft); text-decoration: none; padding: 18px 14px; border-bottom: 2px solid transparent;
+    transition: color 150ms ease, border-color 150ms ease; }
+  .site-nav-links a:hover { color: var(--text); }
+  .site-nav-links a:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .site-nav-links a.-active { color: var(--accent-text); border-bottom-color: var(--accent); }
+  @media (max-width: 640px) {
+    .site-nav { flex-wrap: wrap; padding: 10px 16px; }
+    .site-nav-links { gap: 0; flex-wrap: wrap; }
+    .site-nav-links a { padding: 8px 10px; }
+  }
+  /* ===== SHARED TOKENS END ===== */
+
+  .page { max-width: 900px; margin: 0 auto; padding: 64px 24px 80px; }
+
+  .kicker { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-soft); margin-bottom: 10px; }
+  h1 { font-family: var(--font-display); font-weight: 700; font-size: 34px; letter-spacing: -0.01em; margin: 0 0 16px; text-wrap: balance; }
+  .lede { font-size: 15.5px; line-height: 1.65; color: var(--text-soft); max-width: 68ch; margin: 0 0 48px; }
+  .lede strong { color: var(--text); font-weight: 600; }
+
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 720px) { .cards { grid-template-columns: 1fr; } }
+
+  .card { background: var(--bg-raised); border: 1px solid var(--line); border-radius: 6px; padding: 22px 22px 24px;
+    text-decoration: none; color: var(--text); display: flex; flex-direction: column; gap: 10px;
+    transition: border-color 150ms ease, transform 150ms ease; }
+  .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .card-eyebrow { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-text); }
+  .card-title { font-family: var(--font-display); font-weight: 700; font-size: 18px; }
+  .card-desc { font-size: 13px; line-height: 1.55; color: var(--text-soft); }
+  .card-go { font-family: var(--font-mono); font-size: 11px; color: var(--text-faint, var(--text-soft)); margin-top: auto; padding-top: 6px; }
+
+  .foot { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line-soft); font-size: 11.5px; color: var(--text-soft); line-height: 1.6; max-width: 82ch; font-family: var(--font-mono); }
+</style>
+</head>
+<body>
+
+<!-- SHARED NAV START -->
+<nav class="site-nav">
+  <a class="site-nav-brand" href="index.html">NexWave R&amp;D</a>
+  <div class="site-nav-links">
+    <a href="index.html" class="-active">Home</a>
+    <a href="vendors.html">CD Vendors</a>
+    <a href="milestones.html">Milestones</a>
+    <a href="orientation.html">Orientation</a>
+  </div>
+</nav>
+<!-- SHARED NAV END -->
+
+<div class="page">
+  <div class="kicker">nexwave-rd &middot; programme hub</div>
+  <h1>NexWave Programme Hub</h1>
+  <p class="lede">Three views into the NexWave Health R&amp;D programme, an MBIE-funded two-year build of
+    NZ-owned clinical AI for general practice. Pick a tab: <strong>who owes who a reply</strong> on
+    vendor conversations, <strong>where everything sits on the calendar</strong>, or <strong>a plain-English
+    orientation</strong> to the whole programme.</p>
+
+  <div class="cards">
+    <a class="card" href="vendors.html">
+      <div class="card-eyebrow">Status</div>
+      <div class="card-title">CD Vendors</div>
+      <div class="card-desc">Every active Capability Development vendor conversation, with a ball-in-court badge showing whether it's your move, the vendor's, or MBIE's.</div>
+      <div class="card-go">Open &rarr;</div>
+    </a>
+    <a class="card" href="milestones.html">
+      <div class="card-eyebrow">Timeline</div>
+      <div class="card-title">Milestone View</div>
+      <div class="card-desc">A Gantt view across all four R&amp;D objectives, the three CD streams, and the MBIE quarterly-claims cadence. Click any bar or diamond for detail.</div>
+      <div class="card-go">Open &rarr;</div>
+    </a>
+    <a class="card" href="orientation.html">
+      <div class="card-eyebrow">Reference</div>
+      <div class="card-title">Getting Oriented</div>
+      <div class="card-desc">Why the programme exists, how the work is organised into three domains, and the eight funded objectives, opened one click at a time.</div>
+      <div class="card-go">Open &rarr;</div>
+    </a>
+  </div>
+
+  <p class="foot">Prepared 13 Jul 2026, ahead of Delytics Session 1 (15 Jul). Not a live feed, each page notes
+    its own source and last reconciliation date.</p>
+</div>
+</body>
+</html>
