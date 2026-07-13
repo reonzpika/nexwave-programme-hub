@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Getting oriented — NexWave Programme Hub</title>
+<style>
+  /* ===== SHARED TOKENS START — keep identical across all 4 pages ===== */
+  :root {
+    --bg: #EEF0EA; --bg-raised: #F9FAF5; --text: #172436; --text-soft: #55637A;
+    --line: rgba(23,36,54,0.18); --line-soft: rgba(23,36,54,0.09);
+    --accent: #D3552E; --accent-soft: rgba(211,85,46,0.15); --accent-text: #B8461F;
+    --rag-amber: #A8791F; --rag-amber-soft: rgba(168,121,31,0.16); --rag-amber-line: rgba(168,121,31,0.4);
+    --shadow: 0 1px 2px rgba(20, 30, 27, 0.06), 0 4px 16px rgba(20, 30, 27, 0.05);
+    --font-display: "Futura", "Century Gothic", "Helvetica Neue", Arial, sans-serif;
+    --font-body: "Helvetica Neue", Arial, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0E2A46; --bg-raised: #123457; --text: #EAF1FB; --text-soft: #9FBBD6;
+      --line: rgba(234,241,251,0.20); --line-soft: rgba(234,241,251,0.09);
+      --accent: #F2865A; --accent-soft: rgba(242,134,90,0.18); --accent-text: #F7A582;
+      --rag-amber: #E2B15C; --rag-amber-soft: rgba(226,177,92,0.16); --rag-amber-line: rgba(226,177,92,0.45);
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0E2A46; --bg-raised: #123457; --text: #EAF1FB; --text-soft: #9FBBD6;
+    --line: rgba(234,241,251,0.20); --line-soft: rgba(234,241,251,0.09);
+    --accent: #F2865A; --accent-soft: rgba(242,134,90,0.18); --accent-text: #F7A582;
+    --rag-amber: #E2B15C; --rag-amber-soft: rgba(226,177,92,0.16); --rag-amber-line: rgba(226,177,92,0.45);
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 20px rgba(0, 0, 0, 0.25);
+  }
+  :root[data-theme="light"] {
+    --bg: #EEF0EA; --bg-raised: #F9FAF5; --text: #172436; --text-soft: #55637A;
+    --line: rgba(23,36,54,0.18); --line-soft: rgba(23,36,54,0.09);
+    --accent: #D3552E; --accent-soft: rgba(211,85,46,0.15); --accent-text: #B8461F;
+    --rag-amber: #A8791F; --rag-amber-soft: rgba(168,121,31,0.16); --rag-amber-line: rgba(168,121,31,0.4);
+    --shadow: 0 1px 2px rgba(20, 30, 27, 0.06), 0 4px 16px rgba(20, 30, 27, 0.05);
+  }
+  * { box-sizing: border-box; }
+  html, body { background: var(--bg); color: var(--text); margin: 0; }
+
+  .site-nav { position: sticky; top: 0; z-index: 20; background: var(--bg-raised); border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 24px; }
+  .site-nav-brand { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--text); text-decoration: none; padding: 14px 0; letter-spacing: -0.01em; }
+  .site-nav-links { display: flex; gap: 2px; }
+  .site-nav-links a { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--text-soft); text-decoration: none; padding: 18px 14px; border-bottom: 2px solid transparent;
+    transition: color 150ms ease, border-color 150ms ease; }
+  .site-nav-links a:hover { color: var(--text); }
+  .site-nav-links a:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .site-nav-links a.-active { color: var(--accent-text); border-bottom-color: var(--accent); }
+  @media (max-width: 640px) {
+    .site-nav { flex-wrap: wrap; padding: 10px 16px; }
+    .site-nav-links { gap: 0; flex-wrap: wrap; }
+    .site-nav-links a { padding: 8px 10px; }
+  }
+  /* ===== SHARED TOKENS END ===== */
+
+  body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 56px 24px 96px;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .eyebrow::before {
+    content: "";
+    width: 14px;
+    height: 1px;
+    background: currentColor;
+    display: inline-block;
+  }
+
+  header.masthead {
+    margin-bottom: 56px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  header.masthead .eyebrow { margin-bottom: 18px; }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(30px, 5vw, 42px);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin: 0 0 14px;
+    text-wrap: balance;
+  }
+
+  .dek {
+    font-size: 18px;
+    color: var(--text-soft);
+    max-width: 58ch;
+    margin: 0;
+  }
+
+  .meta-line {
+    margin-top: 22px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--text-soft);
+    font-variant-numeric: tabular-nums;
+  }
+
+  section.layer {
+    margin-bottom: 64px;
+  }
+
+  .depth-tag {
+    font-size: 14px;
+    color: var(--text-soft);
+    margin: 0 0 8px;
+  }
+
+  .depth-tag strong {
+    color: var(--accent-text);
+    font-weight: 600;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 26px;
+    letter-spacing: -0.005em;
+    margin: 0 0 8px;
+    text-wrap: balance;
+  }
+
+  .layer-intro {
+    color: var(--text-soft);
+    max-width: 60ch;
+    margin: 0 0 28px;
+  }
+
+  p { max-width: 68ch; }
+
+  .lede {
+    font-size: 17.5px;
+  }
+
+  .lede strong { color: var(--text); font-weight: 600; }
+
+  .rule {
+    background: var(--accent-soft);
+    color: var(--accent-text);
+    border-radius: 3px;
+    padding: 14px 18px;
+    font-size: 15px;
+    margin: 22px 0 0;
+    max-width: 68ch;
+  }
+
+  .grant-line {
+    color: var(--text-soft);
+    font-size: 15px;
+    margin-top: 22px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+
+  .grant-line strong { color: var(--text); }
+
+  /* Product cards */
+  .products {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin: 28px 0 0;
+  }
+
+  @media (max-width: 620px) {
+    .products { grid-template-columns: 1fr; }
+  }
+
+  .product-card {
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 22px 22px 24px;
+  }
+
+  .product-card .tool-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 18px;
+    margin: 0 0 8px;
+  }
+
+  .product-card p {
+    font-size: 14.5px;
+    color: var(--text-soft);
+    margin: 0;
+  }
+
+  /* Domain cards */
+  .domains {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 26px;
+  }
+
+  .domain-card {
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 20px 22px;
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 18px;
+    align-items: baseline;
+  }
+
+  @media (max-width: 620px) {
+    .domain-card { grid-template-columns: 1fr; gap: 6px; }
+  }
+
+  .domain-card .label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    color: var(--text-soft);
+    text-transform: uppercase;
+  }
+
+  .domain-card .name {
+    font-weight: 700;
+    display: block;
+    margin-top: 2px;
+    font-size: 15px;
+    color: var(--text);
+  }
+
+  .domain-card p {
+    margin: 0;
+    font-size: 15px;
+    color: var(--text-soft);
+  }
+
+  .domain-card.is-yours {
+    border-color: var(--accent);
+    background: linear-gradient(180deg, var(--accent-soft), var(--bg-raised) 70%);
+  }
+
+  .domain-card .yours-tag {
+    display: inline-block;
+    margin-top: 10px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--accent-text);
+    background: var(--accent-soft);
+    border: 1px solid var(--accent);
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+
+  /* Accordion (Layer 3) */
+  .stack { display: flex; flex-direction: column; gap: 10px; margin-top: 22px; }
+
+  .group-label {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    margin: 26px 0 10px;
+  }
+
+  .group-label:first-child { margin-top: 0; }
+
+  details.card {
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  details.card[open] { border-color: var(--accent); }
+
+  details.card summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-weight: 600;
+    font-size: 15.5px;
+  }
+
+  details.card summary::-webkit-details-marker { display: none; }
+
+  details.card summary::before {
+    content: "+";
+    font-family: var(--font-mono);
+    font-size: 15px;
+    color: var(--accent);
+    width: 16px;
+    flex-shrink: 0;
+    transition: transform 0.15s ease;
+  }
+
+  details.card[open] summary::before { content: "\2212"; }
+
+  details.card summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: -2px;
+  }
+
+  details.card .status-tag {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    font-weight: 400;
+    white-space: nowrap;
+  }
+
+  details.card .body {
+    padding: 0 20px 20px 50px;
+    font-size: 14.5px;
+    color: var(--text-soft);
+  }
+
+  details.card .body .deliverable {
+    color: var(--text);
+    margin: 0 0 10px;
+  }
+
+  details.card .body .window {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-soft);
+    margin: 0 0 10px;
+  }
+
+  /* Layer 4 - flagged panel */
+  .watch-panel {
+    background: var(--rag-amber-soft);
+    border: 1px solid var(--rag-amber-line);
+    border-radius: 8px;
+    padding: 30px 30px 8px;
+    margin-top: 20px;
+  }
+
+  .watch-panel .dual-note {
+    font-size: 14px;
+    color: var(--rag-amber);
+    background: transparent;
+    border: 1px dashed var(--rag-amber-line);
+    border-radius: 5px;
+    padding: 12px 16px;
+    margin: 0 0 26px;
+    max-width: none;
+  }
+
+  .watch-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 28px;
+    margin-bottom: 22px;
+  }
+
+  @media (max-width: 620px) {
+    .watch-grid { grid-template-columns: 1fr; }
+  }
+
+  .watch-item .pattern-name {
+    font-weight: 600;
+    font-size: 15px;
+    margin: 0 0 6px;
+    color: var(--text);
+  }
+
+  .watch-item p {
+    font-size: 14.5px;
+    color: var(--text-soft);
+    margin: 0;
+  }
+
+  footer.page-foot {
+    margin-top: 72px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--text-soft);
+    font-family: var(--font-mono);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SHARED NAV START -->
+<nav class="site-nav">
+  <a class="site-nav-brand" href="index.html">NexWave R&amp;D</a>
+  <div class="site-nav-links">
+    <a href="index.html">Home</a>
+    <a href="vendors.html">CD Vendors</a>
+    <a href="milestones.html">Milestones</a>
+    <a href="orientation.html" class="-active">Orientation</a>
+  </div>
+</nav>
+<!-- SHARED NAV END -->
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">NexWave Health &middot; N2RD Programme</div>
+    <h1>Getting oriented</h1>
+    <p class="dek">A working reference for the R&amp;D programme, built to open where you need it and stop where you don't. Start with the big picture below. Everything else is one click deeper.</p>
+    <div class="meta-line">Prepared for Ting &middot; 11 Jul 2026</div>
+  </header>
+
+  <section class="layer" id="layer-1">
+    <h2>Why this exists</h2>
+    <p class="lede">NexWave Health builds <strong>NZ-owned clinical AI for general practice.</strong> The founder is a practising GP who also writes the code. The build partner is Medtech, whose practice-management software runs in roughly 60% of NZ general practices.</p>
+
+    <div class="products">
+      <div class="product-card">
+        <p class="tool-name">Inbox Helper</p>
+        <p>Reads every incoming lab result, radiology report, discharge summary, specialist letter and portal message, and flags how urgent each one is. The GP works the queue by what matters, not by what arrived first.</p>
+      </div>
+      <div class="product-card">
+        <p class="tool-name">Care Gap Finder</p>
+        <p>Continuously scans the enrolled patient list for people overdue for a diabetes, cardiovascular-risk or other key check, and surfaces them as they fall due, not only when someone runs a report.</p>
+      </div>
+    </div>
+
+    <div class="rule">Both tools only surface information. The GP makes every clinical decision. Neither tool ever decides or acts on its own.</div>
+
+    <p class="grant-line"><strong>Why this needs R&amp;D, not just building:</strong> clinical AI can't be shipped on faith. Before either tool can be trusted in a real practice, its accuracy and safety have to be proven properly, on real and synthetic New Zealand data. That proving-out <em>is</em> the R&amp;D.</p>
+
+    <p class="grant-line"><strong>The grant, in one line:</strong> MBIE (the government agency that funds research and innovation) is co-funding two years of this work, 12 March 2026 to 11 March 2028, worth $286,770 of a $716,926 total project. In return, MBIE expects the programme to be run and reported properly: tracked budgets, risk registers, quarterly claims. Building that discipline is Capability Development, and it's the reason your role exists.</p>
+  </section>
+
+  <section class="layer" id="layer-2">
+    <h2>How the work is organised</h2>
+    <p class="layer-intro">Every piece of work in the programme sits in one of these three. Knowing which one you're looking at tells you who owns it and what "done" means.</p>
+
+    <div class="domains">
+      <div class="domain-card">
+        <div class="label">Domain 1<span class="name">R&amp;D</span></div>
+        <p>The actual research. Choosing the technical approach, running experiments, proving the tools are accurate and safe enough for a real GP to rely on.</p>
+      </div>
+      <div class="domain-card is-yours">
+        <div class="label">Domain 2<span class="name">Capability Development</span></div>
+        <p>Building the organisational skills to run R&amp;D properly, alongside the science itself: regulatory and legal know-how, tracking research information, and project management. Three funded streams, $36,000 total.
+        <span class="yours-tag">One stream exists to build your capability</span></p>
+      </div>
+      <div class="domain-card">
+        <div class="label">Domain 3<span class="name">Programme Operations</span></div>
+        <p>The admin machine that keeps the grant alive: quarterly claims back from MBIE, payroll, contracts, and the MBIE relationship itself.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="layer" id="layer-3">
+    <h2>Objectives and streams</h2>
+    <p class="layer-intro">The programme is eight funded objectives: four research, four capability. Open any one for what it actually means and where it stands right now.</p>
+
+    <div class="group-label">R&amp;D objectives</div>
+    <div class="stack">
+      <details class="card">
+        <summary>Foundation AI architecture and data requirements<span class="status-tag">In progress</span></summary>
+        <div class="body">
+          <p class="window">Mar &ndash; Jun 2026</p>
+          <p class="deliverable">Pick the technical architecture and define the NZ data needed. Synthetic-data prototypes need to hit the accuracy targets, and the Medtech and Indici test environments need to be connected.</p>
+          <p>Where it stands: architecture drafted, currently waiting on a labelled dataset and GP clinical review before the final choice is confirmed.</p>
+        </div>
+      </details>
+      <details class="card">
+        <summary>Real-world data handling for inbox management<span class="status-tag">On-track</span></summary>
+        <div class="body">
+          <p class="window">Apr &ndash; Dec 2026</p>
+          <p class="deliverable">Make the chosen architecture handle messy real inbox data safely, with confidence calibration and zero unsafe automatic actions.</p>
+          <p>Where it stands: early window, builds directly on Objective 1's architecture choice.</p>
+        </div>
+      </details>
+      <details class="card">
+        <summary>Clinical accuracy validation for care gap detection<span class="status-tag">Not started</span></summary>
+        <div class="body">
+          <p class="window">Jul 2026 &ndash; Apr 2027</p>
+          <p class="deliverable">Get CVD and diabetes risk calculations right in edge cases, and check the tool doesn't introduce new bias across different patient groups.</p>
+          <p>Where it stands: not yet begun, sequenced after Objectives 1 and 2.</p>
+        </div>
+      </details>
+      <details class="card">
+        <summary>Performance validation and real-world deployment<span class="status-tag">Not started</span></summary>
+        <div class="body">
+          <p class="window">Apr 2027 &ndash; Jan 2028</p>
+          <p class="deliverable">Measure the system across 10 to 20 real practices against clinical, safety and operational targets, then write the final R&amp;D report.</p>
+          <p>Where it stands: not yet begun, the last objective in the sequence.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="group-label">Capability Development streams</div>
+    <div class="stack">
+      <details class="card">
+        <summary>Regulatory and Compliance<span class="status-tag">In progress</span></summary>
+        <div class="body">
+          <p class="deliverable">Expert privacy, clinical-safety and governance advice from external specialists, so the tools meet NZ's medical-device and privacy rules before anyone relies on them.</p>
+        </div>
+      </details>
+      <details class="card">
+        <summary>R&amp;D Information Management<span class="status-tag">On-track</span></summary>
+        <div class="body">
+          <p class="deliverable">Setting up how the research itself gets tracked: experiment logs, model versioning, dataset lineage. Makes the science auditable instead of just remembered.</p>
+        </div>
+      </details>
+      <details class="card" open="">
+        <summary>Project Management<span class="status-tag">Your stream</span></summary>
+        <div class="body">
+          <p class="deliverable">Building your capability to run R&amp;D programme management independently: budget tracking, risk registers, roadmaps. Delivered by Mark Loeffen of Delytics, in problem-based coaching sessions tied to real programme work, not a fixed course.</p>
+          <p>First session: Wed 15 Jul, 2pm, via Teams.</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="layer" id="layer-4">
+    <h2>What to watch for</h2>
+    <p class="depth-tag"><strong>The deepest layer.</strong> This is the part that's actually your job.</p>
+    <p class="layer-intro">Not reading everything: noticing when one of these four things is true, and telling Ryo.</p>
+
+    <div class="watch-panel">
+      <p class="dual-note">This is also the exact list Ryo is bringing into Wednesday's session with Mark, so the session has real material to design against instead of a blank page.</p>
+
+      <div class="watch-grid">
+        <div class="watch-item">
+          <p class="pattern-name">Task staleness</p>
+          <p>A task hasn't moved in a while: no updates, no progress, still sitting open past when it should have closed.</p>
+        </div>
+        <div class="watch-item">
+          <p class="pattern-name">Overdue gates</p>
+          <p>A date has already passed: a decision that was due, a deadline that slipped without anyone flagging it.</p>
+        </div>
+        <div class="watch-item">
+          <p class="pattern-name">Vendor silence</p>
+          <p>An external contact was chased and hasn't replied within a reasonable window, usually around a week.</p>
+        </div>
+        <div class="watch-item">
+          <p class="pattern-name">Disclosure obligations</p>
+          <p>Something needs to be told to MBIE, a change, a delay, a risk, before it quietly becomes a compliance problem.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="page-foot">Getting oriented &middot; N2RD &middot; prepared for Ting, 11 Jul 2026</footer>
+
+</div>
+</body>
+</html>
