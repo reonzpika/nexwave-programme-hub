@@ -73,6 +73,22 @@
   }
   /* ===== SHARED TOKENS END ===== */
 
+  /* ===== SHARED GATE START — keep identical across all pages ===== */
+  body:not(.unlocked) .site-nav,
+  body:not(.unlocked) .page,
+  body:not(.unlocked) .wrap { display: none; }
+  .gate-overlay { position: fixed; inset: 0; z-index: 999; display: flex; align-items: center; justify-content: center; background: var(--bg); }
+  body.unlocked .gate-overlay { display: none; }
+  .gate-box { width: 100%; max-width: 320px; padding: 32px; text-align: center; }
+  .gate-brand { font-family: var(--font-display); font-weight: 700; font-size: 17px; margin-bottom: 10px; }
+  .gate-msg { font-size: 13.5px; color: var(--text-soft); margin: 0 0 18px; }
+  .gate-input { width: 100%; padding: 10px 12px; margin-bottom: 10px; border: 1px solid var(--line); border-radius: 5px; background: var(--bg-raised); color: var(--text); font-size: 14px; }
+  .gate-btn { width: 100%; padding: 10px; border: none; border-radius: 5px; background: var(--accent); color: #fff; font-weight: 600; font-size: 14px; cursor: pointer; }
+  .gate-error { font-size: 12.5px; color: var(--rag-red, #B3261E); margin-top: 10px; }
+  .nav-logout { opacity: 0.55; cursor: pointer; }
+  .nav-logout:hover { opacity: 1; }
+  /* ===== SHARED GATE END ===== */
+
   .page { max-width: 1280px; margin: 0 auto; padding: 40px 28px 64px; }
 
   .titleblock { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; border-bottom: 2px solid var(--text); padding-bottom: 14px; margin-bottom: 6px; flex-wrap: wrap; }
@@ -188,15 +204,28 @@
 </head>
 <body>
 
+<!-- SHARED GATE START — keep identical across all pages -->
+<div class="gate-overlay" id="gate">
+  <div class="gate-box">
+    <div class="gate-brand">NexWave Programme Hub</div>
+    <p class="gate-msg" id="gate-msg">This page is password protected.</p>
+    <input class="gate-input" id="gate-pass" type="password" placeholder="Password" autocomplete="off">
+    <button class="gate-btn" id="gate-submit">Unlock</button>
+    <p class="gate-error" id="gate-error" hidden>Incorrect password, try again.</p>
+  </div>
+</div>
+<!-- SHARED GATE END -->
+
 <!-- SHARED NAV START -->
 <nav class="site-nav">
   <a class="site-nav-brand" href="index.html">NexWave R&amp;D</a>
   <div class="site-nav-links">
     <a href="index.html">Home</a>
-    <a href="vendors.html">CD Vendors</a>
+    <a href="orientation.html">Orientation</a>
     <a href="milestones.html" class="-active">Milestones</a>
     <a href="rd.html">R&amp;D Objectives</a>
-    <a href="orientation.html">Orientation</a>
+    <a href="vendors.html">CD Vendors</a>
+    <a href="#" id="nav-logout" class="nav-logout">Log out</a>
   </div>
 </nav>
 <!-- SHARED NAV END -->
@@ -206,20 +235,17 @@
   <div class="titleblock">
     <div>
       <div class="kicker">nexwave-rd &middot; full programme</div>
-      <h1>Milestone View — mockup v2</h1>
+      <h1>Milestone View</h1>
     </div>
     <div class="titleblock-meta">
-      Prepared <b>13 Jul 2026</b><br>
-      Ahead of Delytics Session 1 &middot; <b>15 Jul</b><br>
-      Not written to vault — illustrative only
+      Last updated <b>13 Jul 2026</b>
     </div>
   </div>
 
   <p class="strip-note">
-    Nine bars across three domains: four R&amp;D objectives, four Capability Development streams, and the
-    MBIE quarterly-claims cadence. Dates rebuilt from <code>rd-framework-spine.md</code> — the contract runs
-    <strong>12 March 2026 to 11 March 2028</strong>, not the Feb 2026 start still sitting in the individual
-    CD stream files. Bar colour is the Forge status word each objective actually carries. Diamonds on the
+    Eight bars across three domains: four R&amp;D objectives, three Capability Development streams, and the
+    MBIE quarterly-claims cadence. The contract runs <strong>12 March 2026 to 11 March 2028</strong>.
+    Bar colour is the Forge status word each objective actually carries. Diamonds on the
     CD bars are the individual MBIE line items. <strong>Click any bar or diamond</strong> for its full detail
     &mdash; the panel below is the same information laid flat, for scanning or printing.
   </p>
@@ -304,13 +330,13 @@
           <span class="bar-tag txt-green">12 Jun &rsquo;27&ndash;11 Mar &rsquo;28</span></div>
       </div>
 
-      <div class="grouphead">CAPABILITY DEVELOPMENT <span>&mdash; MBIE Objectives 5&ndash;7, $36,000</span></div>
+      <div class="grouphead">CAPABILITY DEVELOPMENT <span>&mdash; MBIE Objectives 5&ndash;7</span></div>
 
       <div class="ggrid row">
-        <div class="gutter-cell"><div class="rcode">CD&#8209;1</div><div class="rname">Regulatory &amp; Compliance</div><div class="rmeta txt-amber">$18,000 &middot; IN PROGRESS</div></div>
+        <div class="gutter-cell"><div class="rcode">CD&#8209;1</div><div class="rname">Regulatory &amp; Compliance</div><div class="rmeta txt-amber">IN PROGRESS</div></div>
         <div class="bar bar-amber" style="grid-column:2/19;" data-clickable tabindex="0" role="button"
           aria-label="CD-1, Regulatory and Compliance, view details"
-          data-code="CD&#8209;1 &middot; $18,000" data-title="Regulatory &amp; Compliance Capability" data-window="Mar 2026&ndash;Jul 2027"
+          data-code="CD&#8209;1" data-title="Regulatory &amp; Compliance Capability" data-window="Mar 2026&ndash;Jul 2027"
           data-status="IN PROGRESS" data-status-class="rag-chip-amber"
           data-detail="Five MBIE-locked line items (R1&ndash;R5). Lead vendor Buddle Findlay (Catherine Miller) for R1/R4/R5, terms agreed 29 Jun; Gen Privacy (Amelia Harris) for R2; self-author plus Johner Institute review for R3. Click the diamonds for each line item's own status."></div>
         <div class="marker" style="grid-column:3/4;" data-clickable tabindex="0" role="button"
@@ -323,7 +349,7 @@
           aria-label="R2, Privacy Impact Assessment, view details"
           data-code="R2 &middot; CD-1" data-title="Privacy Impact Assessment" data-window="Target Q3 2026"
           data-status="WAITING ON MBIE" data-status-class="rag-chip-red"
-          data-detail="Ryo confirmed wanting to proceed with Gen Privacy's $5k hybrid review 8 Jul. Amelia pencilled a September start 13 Jul. Lisa (MBIE) has not replied to the $1k budget variation request.">
+          data-detail="Ryo confirmed wanting to proceed with Gen Privacy's hybrid review 8 Jul. Amelia pencilled a September start 13 Jul. Lisa (MBIE) has not replied to the budget variation request.">
           <div class="marker-code txt-red">R2</div><div class="marker-dot status-red"></div></div>
         <div class="marker" style="grid-column:9/10;" data-clickable tabindex="0" role="button"
           aria-label="R3, Clinical Safety Advisory, view details"
@@ -339,10 +365,10 @@
           <div class="marker-code txt-grey">R5</div><div class="marker-dot status-grey"></div></div>
       </div>
       <div class="ggrid row">
-        <div class="gutter-cell"><div class="rcode">CD&#8209;2</div><div class="rname">Information Management</div><div class="rmeta txt-green">$10,000 &middot; ON-TRACK</div></div>
+        <div class="gutter-cell"><div class="rcode">CD&#8209;2</div><div class="rname">Information Management</div><div class="rmeta txt-green">ON-TRACK</div></div>
         <div class="bar bar-green" style="grid-column:2/9;" data-clickable tabindex="0" role="button"
           aria-label="CD-2, Information Management, view details"
-          data-code="CD&#8209;2 &middot; $10,000" data-title="R&amp;D Information Management Capability" data-window="Mar&ndash;Sep 2026"
+          data-code="CD&#8209;2" data-title="R&amp;D Information Management Capability" data-window="Mar&ndash;Sep 2026"
           data-status="ON-TRACK" data-status-class="rag-chip-green"
           data-detail="Two MBIE-locked line items (I1, I2). Tightest deadline of the original three CD streams &mdash; systems need to be in routine use by 26 Sep 2026."></div>
         <div class="marker" style="grid-column:6/7;" data-clickable tabindex="0" role="button"
@@ -359,10 +385,10 @@
           <div class="marker-code txt-red">I2</div><div class="marker-dot status-red"></div></div>
       </div>
       <div class="ggrid row">
-        <div class="gutter-cell"><div class="rcode">CD&#8209;3</div><div class="rname">Project Management</div><div class="rmeta txt-green">$8,000 &middot; ON-TRACK</div></div>
+        <div class="gutter-cell"><div class="rcode">CD&#8209;3</div><div class="rname">Project Management</div><div class="rmeta txt-green">ON-TRACK</div></div>
         <div class="bar bar-green" style="grid-column:2/18;" data-clickable tabindex="0" role="button"
           aria-label="CD-3, Project Management, view details"
-          data-code="CD&#8209;3 &middot; $8,000" data-title="R&amp;D Project Management Capability" data-window="Mar 2026&ndash;Jun 2027"
+          data-code="CD&#8209;3" data-title="R&amp;D Project Management Capability" data-window="Mar 2026&ndash;Jun 2027"
           data-status="ON-TRACK" data-status-class="rag-chip-green"
           data-detail="Two MBIE-locked line items (P1, P2), delivered by Mark Loeffen / Delytics Ltd. Goal: Ting running the R&amp;D programme independently by Jun 2027."></div>
         <div class="marker marker--accent" style="grid-column:6/7;" data-clickable tabindex="0" role="button"
@@ -381,7 +407,7 @@
           aria-label="Quarterly MBIE claims, view details"
           data-code="OPS &middot; CLAIMS" data-title="Quarterly MBIE Claims" data-window="12 Mar 2026 &ndash; 11 Mar 2028"
           data-status="8 CLAIMS" data-status-class="rag-chip-grey"
-          data-detail="Eight claims over the 24-month grant via the MBIE Forge portal, each reconciling time records, costs and a progress narrative. MBIE eligible hourly rate (incl. 20% overhead): Ryo $96/hr, Ting $70/hr."></div>
+          data-detail="Eight claims over the 24-month grant via the MBIE Forge portal, each reconciling time records, costs and a progress narrative. MBIE eligible hourly rate (incl. 20% overhead) applies to time recorded against the grant."></div>
         <div class="marker" style="grid-column:5/6;" data-clickable tabindex="0" role="button"
           aria-label="Q1 claim, view details"
           data-code="Q1 &middot; CLAIMS" data-title="Q1 claim" data-window="Period 12 Mar &ndash; 15 Jun 2026"
@@ -479,15 +505,8 @@
   </div>
 
   <p class="foot">
-    CD windows read from <code>rd-framework-spine.md</code>. R&amp;D objective windows read from
-    <code>rd-20260613-003</code> and <code>overview-obj1.md</code>, the re-anchored dates Ryo confirmed with
-    MBIE&rsquo;s Lisa Pritchard on 25 Jun 2026 &mdash; <code>rd-framework-spine.md</code>&rsquo;s own scan table
-    still has the wrong Obj 1&ndash;4 windows (it mis-converts &ldquo;Months 1&ndash;6&rdquo; as Mar&ndash;Jun
-    instead of the correct 12 Mar&ndash;11 Sep) and wasn&rsquo;t swept when the correction was made. This also
-    supersedes the &ldquo;Period: Feb 2026&hellip;&rdquo; text still in <code>overview-regulatory.md</code>,
-    <code>overview-info.md</code> and <code>overview-pm.md</code>. R1/R2 status updated 13 Jul against the
-    corrections written to <code>vendors-regulatory.md</code> this session (Buddle Findlay terms agreed 29 Jun,
-    not pending signature; R2 awaiting Lisa, not awaiting Ryo).
+    R&amp;D objective windows run 12 Mar&ndash;11 Sep for Objective 1, sequentially through to Jan 2028
+    for Objective 4. R1/R2 regulatory status current as of 13 Jul (Buddle Findlay terms agreed 29 Jun; R2 in progress).
   </p>
 
 </div>
@@ -544,6 +563,81 @@
   });
   closeBtn.addEventListener('click', closeModal);
   overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
+})();
+</script>
+
+<script>
+(function () {
+  var PAGE_ROLE = "guest";
+  var PASSWORDS = { guest: "compass", team: "keystone" };
+  var STORAGE_KEY = "nexhub_role";
+  var ALLOWED_GUEST_PAGES = ["milestones.html", "orientation.html"];
+
+  function roleAllows(role) {
+    if (role === "team") return true;
+    if (role === "guest") return PAGE_ROLE === "guest";
+    return false;
+  }
+
+  function applyNavForRole(role) {
+    if (role !== "guest") return;
+    var links = document.querySelectorAll(".site-nav-links a");
+    for (var i = 0; i < links.length; i++) {
+      if (links[i].id === "nav-logout") continue;
+      var href = links[i].getAttribute("href");
+      if (ALLOWED_GUEST_PAGES.indexOf(href) === -1) links[i].style.display = "none";
+    }
+    var brand = document.querySelector(".site-nav-brand");
+    if (brand) brand.setAttribute("href", "orientation.html");
+  }
+
+  function unlock(role) {
+    document.body.classList.add("unlocked");
+    applyNavForRole(role);
+  }
+
+  function showRestricted() {
+    document.getElementById("gate-msg").textContent = "This page isn't part of your shared link. Ask Ryo if you need access.";
+    document.getElementById("gate-pass").style.display = "none";
+    document.getElementById("gate-submit").style.display = "none";
+  }
+
+  var stored = localStorage.getItem(STORAGE_KEY);
+  if (stored && roleAllows(stored)) {
+    unlock(stored);
+  } else if (stored) {
+    showRestricted();
+  }
+
+  document.getElementById("gate-submit").addEventListener("click", function () {
+    var val = document.getElementById("gate-pass").value.trim().toLowerCase();
+    var role = null;
+    if (val === PASSWORDS.guest.toLowerCase()) role = "guest";
+    if (val === PASSWORDS.team.toLowerCase()) role = "team";
+    if (!role) {
+      document.getElementById("gate-error").hidden = false;
+      return;
+    }
+    localStorage.setItem(STORAGE_KEY, role);
+    if (roleAllows(role)) {
+      unlock(role);
+    } else {
+      showRestricted();
+    }
+  });
+
+  document.getElementById("gate-pass").addEventListener("keydown", function (e) {
+    if (e.key === "Enter") document.getElementById("gate-submit").click();
+  });
+
+  var logoutLink = document.getElementById("nav-logout");
+  if (logoutLink) {
+    logoutLink.addEventListener("click", function (e) {
+      e.preventDefault();
+      localStorage.removeItem(STORAGE_KEY);
+      location.reload();
+    });
+  }
 })();
 </script>
 

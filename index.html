@@ -86,6 +86,22 @@
   }
   /* ===== SHARED TOKENS END ===== */
 
+  /* ===== SHARED GATE START — keep identical across all pages ===== */
+  body:not(.unlocked) .site-nav,
+  body:not(.unlocked) .page,
+  body:not(.unlocked) .wrap { display: none; }
+  .gate-overlay { position: fixed; inset: 0; z-index: 999; display: flex; align-items: center; justify-content: center; background: var(--bg); }
+  body.unlocked .gate-overlay { display: none; }
+  .gate-box { width: 100%; max-width: 320px; padding: 32px; text-align: center; }
+  .gate-brand { font-family: var(--font-display); font-weight: 700; font-size: 17px; margin-bottom: 10px; }
+  .gate-msg { font-size: 13.5px; color: var(--text-soft); margin: 0 0 18px; }
+  .gate-input { width: 100%; padding: 10px 12px; margin-bottom: 10px; border: 1px solid var(--line); border-radius: 5px; background: var(--bg-raised); color: var(--text); font-size: 14px; }
+  .gate-btn { width: 100%; padding: 10px; border: none; border-radius: 5px; background: var(--accent); color: #fff; font-weight: 600; font-size: 14px; cursor: pointer; }
+  .gate-error { font-size: 12.5px; color: var(--rag-red, #B3261E); margin-top: 10px; }
+  .nav-logout { opacity: 0.55; cursor: pointer; }
+  .nav-logout:hover { opacity: 1; }
+  /* ===== SHARED GATE END ===== */
+
   .page { max-width: 1040px; margin: 0 auto; padding: 40px 24px 70px; }
   .kicker { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-soft); margin-bottom: 8px; }
   .titleblock { border-bottom: 2px solid var(--text); padding-bottom: 16px; margin-bottom: 28px; }
@@ -133,15 +149,28 @@
 </head>
 <body>
 
+<!-- SHARED GATE START — keep identical across all pages -->
+<div class="gate-overlay" id="gate">
+  <div class="gate-box">
+    <div class="gate-brand">NexWave Programme Hub</div>
+    <p class="gate-msg" id="gate-msg">This page is password protected.</p>
+    <input class="gate-input" id="gate-pass" type="password" placeholder="Password" autocomplete="off">
+    <button class="gate-btn" id="gate-submit">Unlock</button>
+    <p class="gate-error" id="gate-error" hidden>Incorrect password, try again.</p>
+  </div>
+</div>
+<!-- SHARED GATE END -->
+
 <!-- SHARED NAV START -->
 <nav class="site-nav">
   <a class="site-nav-brand" href="index.html">NexWave R&amp;D</a>
   <div class="site-nav-links">
     <a href="index.html" class="-active">Home</a>
-    <a href="vendors.html">CD Vendors</a>
+    <a href="orientation.html">Orientation</a>
     <a href="milestones.html">Milestones</a>
     <a href="rd.html">R&amp;D Objectives</a>
-    <a href="orientation.html">Orientation</a>
+    <a href="vendors.html">CD Vendors</a>
+    <a href="#" id="nav-logout" class="nav-logout">Log out</a>
   </div>
 </nav>
 <!-- SHARED NAV END -->
@@ -246,5 +275,79 @@
 
   <p class="foot">Source: index-nexwave-rd.md, 13 Jul 2026. Not a live feed, rebuilt when the vault state moves materially.</p>
 </div>
+<script>
+(function () {
+  var PAGE_ROLE = "team";
+  var PASSWORDS = { guest: "compass", team: "keystone" };
+  var STORAGE_KEY = "nexhub_role";
+  var ALLOWED_GUEST_PAGES = ["milestones.html", "orientation.html"];
+
+  function roleAllows(role) {
+    if (role === "team") return true;
+    if (role === "guest") return PAGE_ROLE === "guest";
+    return false;
+  }
+
+  function applyNavForRole(role) {
+    if (role !== "guest") return;
+    var links = document.querySelectorAll(".site-nav-links a");
+    for (var i = 0; i < links.length; i++) {
+      if (links[i].id === "nav-logout") continue;
+      var href = links[i].getAttribute("href");
+      if (ALLOWED_GUEST_PAGES.indexOf(href) === -1) links[i].style.display = "none";
+    }
+    var brand = document.querySelector(".site-nav-brand");
+    if (brand) brand.setAttribute("href", "orientation.html");
+  }
+
+  function unlock(role) {
+    document.body.classList.add("unlocked");
+    applyNavForRole(role);
+  }
+
+  function showRestricted() {
+    document.getElementById("gate-msg").textContent = "This page isn't part of your shared link. Ask Ryo if you need access.";
+    document.getElementById("gate-pass").style.display = "none";
+    document.getElementById("gate-submit").style.display = "none";
+  }
+
+  var stored = localStorage.getItem(STORAGE_KEY);
+  if (stored && roleAllows(stored)) {
+    unlock(stored);
+  } else if (stored) {
+    showRestricted();
+  }
+
+  document.getElementById("gate-submit").addEventListener("click", function () {
+    var val = document.getElementById("gate-pass").value.trim().toLowerCase();
+    var role = null;
+    if (val === PASSWORDS.guest.toLowerCase()) role = "guest";
+    if (val === PASSWORDS.team.toLowerCase()) role = "team";
+    if (!role) {
+      document.getElementById("gate-error").hidden = false;
+      return;
+    }
+    localStorage.setItem(STORAGE_KEY, role);
+    if (roleAllows(role)) {
+      unlock(role);
+    } else {
+      showRestricted();
+    }
+  });
+
+  document.getElementById("gate-pass").addEventListener("keydown", function (e) {
+    if (e.key === "Enter") document.getElementById("gate-submit").click();
+  });
+
+  var logoutLink = document.getElementById("nav-logout");
+  if (logoutLink) {
+    logoutLink.addEventListener("click", function (e) {
+      e.preventDefault();
+      localStorage.removeItem(STORAGE_KEY);
+      location.reload();
+    });
+  }
+})();
+</script>
 </body>
 </html>
