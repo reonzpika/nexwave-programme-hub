@@ -60,6 +60,27 @@
   }
   /* ===== SHARED TOKENS END ===== */
 
+  /* ===== SHARED GATE START — keep identical across all pages ===== */
+  body:not(.unlocked) .site-nav,
+  body:not(.unlocked) .page,
+  body:not(.unlocked) .wrap { display: none; }
+  .gate-overlay { position: fixed; inset: 0; z-index: 999; display: flex; align-items: center; justify-content: center; background: var(--bg); }
+  body.unlocked .gate-overlay { display: none; }
+  .gate-box { width: 100%; max-width: 320px; padding: 32px; text-align: center; }
+  .gate-brand { font-family: var(--font-display); font-weight: 700; font-size: 17px; margin-bottom: 10px; }
+  .gate-msg { font-size: 13.5px; color: var(--text-soft); margin: 0 0 18px; }
+  .gate-input { width: 100%; padding: 10px 12px; margin-bottom: 10px; border: 1px solid var(--line); border-radius: 5px; background: var(--bg-raised); color: var(--text); font-size: 14px; }
+  .gate-btn { width: 100%; padding: 10px; border: none; border-radius: 5px; background: var(--accent); color: #fff; font-weight: 600; font-size: 14px; cursor: pointer; }
+  .gate-error { font-size: 12.5px; color: var(--rag-red, #B3261E); margin-top: 10px; }
+  .nav-logout { opacity: 0.55; cursor: pointer; }
+  .nav-logout:hover { opacity: 1; }
+  /* ===== SHARED GATE END ===== */
+
+  ul.basics-list { list-style: none; margin: 0 0 8px; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  ul.basics-list li { padding-left: 16px; border-left: 2px solid var(--line); font-size: 15px; color: var(--text-soft); }
+  ul.basics-list li strong { color: var(--text); font-weight: 600; }
+  h3.sub-h { font-family: var(--font-display); font-weight: 700; font-size: 17px; margin: 28px 0 14px; }
+
   body {
     font-family: var(--font-body);
     font-size: 16px;
@@ -182,6 +203,14 @@
   }
 
   .grant-line strong { color: var(--text); }
+
+  .grant-line code {
+    font-family: var(--font-mono);
+    font-size: 0.92em;
+    background: var(--line-soft);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
 
   /* Product cards */
   .products {
@@ -405,6 +434,127 @@
     margin: 0;
   }
 
+  /* Layer 5 - tool proposal */
+  .proposal-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--rag-amber);
+    background: var(--rag-amber-soft);
+    border: 1px solid var(--rag-amber-line);
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-bottom: 16px;
+  }
+
+  .tool-shots {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin: 24px 0 4px;
+  }
+
+  @media (max-width: 620px) {
+    .tool-shots { grid-template-columns: 1fr; }
+  }
+
+  .tool-shots figure {
+    margin: 0;
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 14px;
+  }
+
+  .tool-shots figcaption {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    margin-bottom: 10px;
+  }
+
+  .tool-shots img {
+    width: 100%;
+    display: block;
+    border-radius: 4px;
+    border: 1px solid var(--line);
+    cursor: zoom-in;
+    transition: opacity 150ms ease;
+  }
+
+  .tool-shots img:hover {
+    opacity: 0.88;
+  }
+
+  .tool-shots figure {
+    position: relative;
+  }
+
+  .tool-shots .expand-hint {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #fff;
+    background: rgba(23, 36, 54, 0.55);
+    padding: 3px 8px;
+    border-radius: 3px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 150ms ease;
+  }
+
+  .tool-shots figure:hover .expand-hint {
+    opacity: 1;
+  }
+
+  /* Lightbox */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 998;
+    background: rgba(14, 20, 27, 0.82);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    cursor: zoom-out;
+  }
+
+  .lightbox.-open {
+    display: flex;
+  }
+
+  .lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 6px;
+    box-shadow: var(--shadow);
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 22px;
+    right: 28px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+
   footer.page-foot {
     margin-top: 72px;
     padding-top: 24px;
@@ -421,15 +571,28 @@
 </head>
 <body>
 
+<!-- SHARED GATE START — keep identical across all pages -->
+<div class="gate-overlay" id="gate">
+  <div class="gate-box">
+    <div class="gate-brand">NexWave Programme Hub</div>
+    <p class="gate-msg" id="gate-msg">This page is password protected.</p>
+    <input class="gate-input" id="gate-pass" type="password" placeholder="Password" autocomplete="off">
+    <button class="gate-btn" id="gate-submit">Unlock</button>
+    <p class="gate-error" id="gate-error" hidden>Incorrect password, try again.</p>
+  </div>
+</div>
+<!-- SHARED GATE END -->
+
 <!-- SHARED NAV START -->
 <nav class="site-nav">
   <a class="site-nav-brand" href="index.html">NexWave R&amp;D</a>
   <div class="site-nav-links">
     <a href="index.html">Home</a>
-    <a href="vendors.html">CD Vendors</a>
+    <a href="orientation.html" class="-active">Orientation</a>
     <a href="milestones.html">Milestones</a>
     <a href="rd.html">R&amp;D Objectives</a>
-    <a href="orientation.html" class="-active">Orientation</a>
+    <a href="vendors.html">CD Vendors</a>
+    <a href="#" id="nav-logout" class="nav-logout">Log out</a>
   </div>
 </nav>
 <!-- SHARED NAV END -->
@@ -439,30 +602,44 @@
   <header class="masthead">
     <div class="eyebrow">NexWave Health &middot; N2RD Programme</div>
     <h1>Getting oriented</h1>
-    <p class="dek">A working reference for the R&amp;D programme, built to open where you need it and stop where you don't. Start with the big picture below. Everything else is one click deeper.</p>
-    <div class="meta-line">Prepared for Ting &middot; 11 Jul 2026</div>
+    <div class="meta-line">Last updated 15 Jul 2026</div>
   </header>
 
   <section class="layer" id="layer-1">
-    <h2>Why this exists</h2>
-    <p class="lede">NexWave Health builds <strong>NZ-owned clinical AI for general practice.</strong> The founder is a practising GP who also writes the code. The build partner is Medtech, whose practice-management software runs in roughly 60% of NZ general practices.</p>
+    <h2>What it is</h2>
+    <ul class="basics-list">
+      <li><strong>N2RD</strong> &mdash; short for "New to R&amp;D," MBIE's grant category for organisations undertaking R&amp;D for the first time.</li>
+      <li><strong>Timeline</strong> &mdash; 12 March 2026 to 11 March 2028 (24 months).</li>
+      <li><strong>Objective</strong> &mdash; build and validate two clinical AI tools for New Zealand general practice, safely and accurately enough for a real GP to rely on.</li>
+      <li><strong>Team</strong> &mdash; Ryo (founder, practising GP and developer) and Ting (R&amp;D Programme Manager).</li>
+      <li><strong>Build partner</strong> &mdash; Medtech, whose practice-management software runs in roughly 60% of NZ general practices.</li>
+      <li><strong>Funder</strong> &mdash; MBIE, the government agency that funds research and innovation in New Zealand.</li>
+    </ul>
 
+    <h3 class="sub-h">What we're building</h3>
     <div class="products">
       <div class="product-card">
         <p class="tool-name">Inbox Helper</p>
-        <p>Reads every incoming lab result, radiology report, discharge summary, specialist letter and portal message, and flags how urgent each one is. The GP works the queue by what matters, not by what arrived first.</p>
+        <p><strong>The issue today:</strong> every incoming lab result, radiology report, discharge summary, specialist letter and portal message lands in one queue with no urgency signal, so GPs work through it in arrival order rather than by what actually matters.</p>
+        <p><strong>What we're building:</strong> a tool that reads each item and flags how urgent it is, so the GP works the queue by what matters, not by what arrived first.</p>
       </div>
       <div class="product-card">
         <p class="tool-name">Care Gap Finder</p>
-        <p>Continuously scans the enrolled patient list for people overdue for a diabetes, cardiovascular-risk or other key check, and surfaces them as they fall due, not only when someone runs a report.</p>
+        <p><strong>The issue today:</strong> patients overdue for a diabetes, cardiovascular-risk or other key check are usually only found when someone happens to run a report.</p>
+        <p><strong>What we're building:</strong> a tool that continuously scans the enrolled patient list and surfaces overdue patients as they fall due, not only when someone checks.</p>
       </div>
     </div>
 
     <div class="rule">Both tools only surface information. The GP makes every clinical decision. Neither tool ever decides or acts on its own.</div>
+  </section>
 
-    <p class="grant-line"><strong>Why this needs R&amp;D, not just building:</strong> clinical AI can't be shipped on faith. Before either tool can be trusted in a real practice, its accuracy and safety have to be proven properly, on real and synthetic New Zealand data. That proving-out <em>is</em> the R&amp;D.</p>
+  <section class="layer" id="layer-1b">
+    <h2>Why this is R&amp;D</h2>
+    <p class="lede">Building software that reads clinical data isn't new by itself. What makes this R&amp;D is the uncertainty still to resolve before either tool can be trusted in a real practice: <strong>can the accuracy and safety actually be proven</strong>, on real and synthetic New Zealand data, rather than assumed?</p>
 
-    <p class="grant-line"><strong>The grant, in one line:</strong> MBIE (the government agency that funds research and innovation) is co-funding two years of this work, 12 March 2026 to 11 March 2028, worth $286,770 of a $716,926 total project. In return, MBIE expects the programme to be run and reported properly: tracked budgets, risk registers, quarterly claims. Building that discipline is Capability Development, and it's the reason your role exists.</p>
+    <p class="grant-line"><strong>What we're researching:</strong> the technical architecture that can handle messy real inbox data safely; whether cardiovascular and diabetes risk calculations hold up in edge cases; whether the tools introduce bias across different patient groups; and how the system actually performs once measured across real practices, not just in the lab. None of that is answerable in advance &mdash; it has to be tested and proven, which is what the programme's R&amp;D objectives (below) are structured to do.</p>
+
+    <p class="grant-line"><strong>The grant, in one line:</strong> MBIE is co-funding this proving-out work in return for the programme being run and reported properly: tracked budgets, risk registers, quarterly claims. Building that discipline is Capability Development.</p>
   </section>
 
   <section class="layer" id="layer-2">
@@ -474,10 +651,9 @@
         <div class="label">Domain 1<span class="name">R&amp;D</span></div>
         <p>The actual research. Choosing the technical approach, running experiments, proving the tools are accurate and safe enough for a real GP to rely on.</p>
       </div>
-      <div class="domain-card is-yours">
+      <div class="domain-card">
         <div class="label">Domain 2<span class="name">Capability Development</span></div>
-        <p>Building the organisational skills to run R&amp;D properly, alongside the science itself: regulatory and legal know-how, tracking research information, and project management. Three funded streams, $36,000 total.
-        <span class="yours-tag">One stream exists to build your capability</span></p>
+        <p>Building the organisational skills to run R&amp;D properly, alongside the science itself: regulatory and legal know-how, tracking research information, and project management. Three funded streams.</p>
       </div>
       <div class="domain-card">
         <div class="label">Domain 3<span class="name">Programme Operations</span></div>
@@ -488,7 +664,7 @@
 
   <section class="layer" id="layer-3">
     <h2>Objectives and streams</h2>
-    <p class="layer-intro">The programme is eight funded objectives: four research, four capability. Open any one for what it actually means and where it stands right now.</p>
+    <p class="layer-intro">The programme is seven funded objectives: four research, three capability. Open any one for what it actually means and where it stands right now.</p>
 
     <div class="group-label">R&amp;D objectives</div>
     <div class="stack">
@@ -540,47 +716,151 @@
           <p class="deliverable">Setting up how the research itself gets tracked: experiment logs, model versioning, dataset lineage. Makes the science auditable instead of just remembered.</p>
         </div>
       </details>
-      <details class="card" open="">
-        <summary>Project Management<span class="status-tag">Your stream</span></summary>
+      <details class="card">
+        <summary>Project Management<span class="status-tag">In progress</span></summary>
         <div class="body">
-          <p class="deliverable">Building your capability to run R&amp;D programme management independently: budget tracking, risk registers, roadmaps. Delivered by Mark Loeffen of Delytics, in problem-based coaching sessions tied to real programme work, not a fixed course.</p>
+          <p class="deliverable">Programme management coaching: budget tracking, risk registers, roadmaps. Delivered by Mark Loeffen of Delytics, in problem-based sessions tied to real programme work, not a fixed course.</p>
           <p>First session: Wed 15 Jul, 2pm, via Teams.</p>
         </div>
       </details>
     </div>
   </section>
 
-  <section class="layer" id="layer-4">
-    <h2>What to watch for</h2>
-    <p class="depth-tag"><strong>The deepest layer.</strong> This is the part that's actually your job.</p>
-    <p class="layer-intro">Not reading everything: noticing when one of these four things is true, and telling Ryo.</p>
+  <section class="layer" id="layer-5">
+    <h2>A tool we're considering: Plane</h2>
+    <div class="proposal-tag">Proposal, not yet adopted</div>
+    <p class="layer-intro">This section is discussion material for Mark and Ryo to look at together and agree whether it's worth using, not something that's already been decided.</p>
 
-    <div class="watch-panel">
-      <p class="dual-note">This is also the exact list Ryo is bringing into Wednesday's session with Mark, so the session has real material to design against instead of a blank page.</p>
+    <p class="lede">Plane is project management software, the same category as <strong>Monday.com, Asana or Trello</strong>. It gives Ting (and anyone else on the programme) a shared place to see what's due, what's in progress, and what's done, instead of that living only in emails or in Ryo's head.</p>
 
-      <div class="watch-grid">
-        <div class="watch-item">
-          <p class="pattern-name">Task staleness</p>
-          <p>A task hasn't moved in a while: no updates, no progress, still sitting open past when it should have closed.</p>
-        </div>
-        <div class="watch-item">
-          <p class="pattern-name">Overdue gates</p>
-          <p>A date has already passed: a decision that was due, a deadline that slipped without anyone flagging it.</p>
-        </div>
-        <div class="watch-item">
-          <p class="pattern-name">Vendor silence</p>
-          <p>An external contact was chased and hasn't replied within a reasonable window, usually around a week.</p>
-        </div>
-        <div class="watch-item">
-          <p class="pattern-name">Disclosure obligations</p>
-          <p>Something needs to be told to MBIE, a change, a delay, a risk, before it quietly becomes a compliance problem.</p>
-        </div>
-      </div>
+    <div class="rule">Two ways to look at the same list of tasks. <strong>List view</strong> is a checklist grouped by status. <strong>Kanban (board) view</strong> is cards you drag between status columns as work moves along. Both are shown below.</div>
+
+    <div class="tool-shots">
+      <figure>
+        <figcaption>Kanban / board view</figcaption>
+        <img src="plane-kanban-view.gif" alt="Plane Kanban board view showing Todo, In Progress, Done and Cancelled columns with sample cards" class="js-lightbox-trigger">
+        <span class="expand-hint">Click to enlarge</span>
+      </figure>
+      <figure>
+        <figcaption>List view</figcaption>
+        <img src="plane-list-view.gif" alt="Plane List view showing the same tasks grouped by status as rows" class="js-lightbox-trigger">
+        <span class="expand-hint">Click to enlarge</span>
+      </figure>
     </div>
+
+    <p class="grant-line"><strong>Where things stand:</strong> the workspace is live at <code>app.plane.so/nexwave</code> and Claude is already connected to it, able to read and update tasks directly. What's pictured above is Plane's own built-in demo content, not real CD or Ops tasks: nothing has been migrated in and no decision has been made to actually run the programme through it.</p>
   </section>
 
-  <footer class="page-foot">Getting oriented &middot; N2RD &middot; prepared for Ting, 11 Jul 2026</footer>
+  <footer class="page-foot">Getting oriented &middot; N2RD &middot; last updated 15 Jul 2026</footer>
 
 </div>
+
+<!-- Lightbox for enlargeable screenshots -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close" type="button">Close</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+<script>
+(function () {
+  var PAGE_ROLE = "guest";
+  var PASSWORDS = { guest: "compass", team: "keystone" };
+  var STORAGE_KEY = "nexhub_role";
+  var ALLOWED_GUEST_PAGES = ["milestones.html", "orientation.html"];
+
+  function roleAllows(role) {
+    if (role === "team") return true;
+    if (role === "guest") return PAGE_ROLE === "guest";
+    return false;
+  }
+
+  function applyNavForRole(role) {
+    if (role !== "guest") return;
+    var links = document.querySelectorAll(".site-nav-links a");
+    for (var i = 0; i < links.length; i++) {
+      if (links[i].id === "nav-logout") continue;
+      var href = links[i].getAttribute("href");
+      if (ALLOWED_GUEST_PAGES.indexOf(href) === -1) links[i].style.display = "none";
+    }
+    var brand = document.querySelector(".site-nav-brand");
+    if (brand) brand.setAttribute("href", "orientation.html");
+  }
+
+  function unlock(role) {
+    document.body.classList.add("unlocked");
+    applyNavForRole(role);
+  }
+
+  function showRestricted() {
+    document.getElementById("gate-msg").textContent = "This page isn't part of your shared link. Ask Ryo if you need access.";
+    document.getElementById("gate-pass").style.display = "none";
+    document.getElementById("gate-submit").style.display = "none";
+  }
+
+  var stored = localStorage.getItem(STORAGE_KEY);
+  if (stored && roleAllows(stored)) {
+    unlock(stored);
+  } else if (stored) {
+    showRestricted();
+  }
+
+  document.getElementById("gate-submit").addEventListener("click", function () {
+    var val = document.getElementById("gate-pass").value.trim().toLowerCase();
+    var role = null;
+    if (val === PASSWORDS.guest.toLowerCase()) role = "guest";
+    if (val === PASSWORDS.team.toLowerCase()) role = "team";
+    if (!role) {
+      document.getElementById("gate-error").hidden = false;
+      return;
+    }
+    localStorage.setItem(STORAGE_KEY, role);
+    if (roleAllows(role)) {
+      unlock(role);
+    } else {
+      showRestricted();
+    }
+  });
+
+  document.getElementById("gate-pass").addEventListener("keydown", function (e) {
+    if (e.key === "Enter") document.getElementById("gate-submit").click();
+  });
+
+  var logoutLink = document.getElementById("nav-logout");
+  if (logoutLink) {
+    logoutLink.addEventListener("click", function (e) {
+      e.preventDefault();
+      localStorage.removeItem(STORAGE_KEY);
+      location.reload();
+    });
+  }
+
+  var lightbox = document.getElementById("lightbox");
+  var lightboxImg = document.getElementById("lightbox-img");
+  if (lightbox && lightboxImg) {
+    function openLightbox(src, alt) {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt || "";
+      lightbox.classList.add("-open");
+    }
+    function closeLightbox() {
+      lightbox.classList.remove("-open");
+      lightboxImg.src = "";
+    }
+    var triggers = document.querySelectorAll(".js-lightbox-trigger");
+    for (var i = 0; i < triggers.length; i++) {
+      triggers[i].addEventListener("click", function () {
+        openLightbox(this.getAttribute("src"), this.getAttribute("alt"));
+      });
+    }
+    lightbox.addEventListener("click", closeLightbox);
+    document.getElementById("lightbox-close").addEventListener("click", function (e) {
+      e.stopPropagation();
+      closeLightbox();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeLightbox();
+    });
+  }
+})();
+</script>
 </body>
 </html>
