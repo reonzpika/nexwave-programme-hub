@@ -1,353 +1,430 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
-<title>NexWave Health — NexWave Programme Hub</title>
+<title>NexWave Programme Timeline</title>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
 <style>
-  /* ===== SHARED TOKENS START — keep identical across all pages ===== */
   :root {
-    --bg: #EEF0EA; --bg-raised: #F9FAF5; --bg-sunken: #E4E7DD;
-    --text: #172436; --text-soft: #55637A; --text-faint: #8993A4;
-    --line: rgba(23,36,54,0.16); --line-soft: rgba(23,36,54,0.08);
-    --accent: #D3552E; --accent-soft: rgba(211,85,46,0.13); --accent-text: #B8461F;
-    --vendor: #2F5D7C; --vendor-soft: rgba(47,93,124,0.12); --vendor-text: #24485F;
-    --mbie: #6B4C82; --mbie-soft: rgba(107,76,130,0.12); --mbie-text: #593D6C;
-    --rag-green: #3F6E52; --rag-green-soft: rgba(63,110,82,0.14);
-    --rag-amber: #A8791F; --rag-amber-soft: rgba(168,121,31,0.16);
-    --rag-red: #8E3B47; --rag-red-soft: rgba(142,59,71,0.14);
-    --rag-grey: #7C8698; --rag-grey-soft: rgba(124,134,152,0.14);
-    --font-display: "Futura", "Century Gothic", "Helvetica Neue", Arial, sans-serif;
-    --font-body: "Helvetica Neue", Arial, sans-serif;
-    --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", Consolas, monospace;
+    --ground: #FAFBFC;
+    --surface: #FFFFFF;
+    --surface-2: #F2F5F7;
+    --ink: #17202A;
+    --ink-2: #47555F;
+    --ink-3: #7C8A95;
+    --rule: #DDE4E9;
+    --rule-2: #C6D1D8;
+    --accent: #0E6B72;
+    --accent-soft: #D7EAEB;
+    --accent-ink: #0A5157;
+    --critical: #A83A32;
+    --critical-soft: #F6E2E0;
+    --warn: #9A6714;
+    --warn-soft: #F7EBD6;
+    --ok: #35704A;
+    --ok-soft: #DEEDE2;
+    --done: #6E7C88;
+    --done-soft: #E4E9ED;
+    --idle-soft: #E8ECEF;
+    --shadow: 0 1px 2px rgba(23,32,42,.06), 0 10px 30px -14px rgba(23,32,42,.22);
   }
   @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #0E2A46; --bg-raised: #123457; --bg-sunken: #0A2038;
-      --text: #EAF1FB; --text-soft: #9FBBD6; --text-faint: #6D89A8;
-      --line: rgba(234,241,251,0.20); --line-soft: rgba(234,241,251,0.09);
-      --accent: #F2865A; --accent-soft: rgba(242,134,90,0.18); --accent-text: #F7A582;
-      --vendor: #7FA8D9; --vendor-soft: rgba(127,168,217,0.18); --vendor-text: #A4C4E8;
-      --mbie: #C79FE0; --mbie-soft: rgba(199,159,224,0.18); --mbie-text: #D8BBEE;
-      --rag-green: #6FCB9A; --rag-green-soft: rgba(111,203,154,0.16);
-      --rag-amber: #E2B15C; --rag-amber-soft: rgba(226,177,92,0.16);
-      --rag-red: #E8899A; --rag-red-soft: rgba(232,137,154,0.16);
-      --rag-grey: #7E93AC; --rag-grey-soft: rgba(126,147,172,0.18);
+    :root:not([data-theme="light"]) {
+      --ground: #10151A; --surface: #171E25; --surface-2: #1E262E;
+      --ink: #E6ECF1; --ink-2: #A9B6C0; --ink-3: #77858F;
+      --rule: #2A343D; --rule-2: #3A4650;
+      --accent: #3FA7AE; --accent-soft: #14343A; --accent-ink: #7FCBD1;
+      --critical: #E0736A; --critical-soft: #3A1F1D;
+      --warn: #D6A44E; --warn-soft: #332713;
+      --ok: #6BB183; --ok-soft: #1B2E22;
+      --done: #6D7A85; --done-soft: #232C34; --idle-soft: #232C34;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
     }
   }
   :root[data-theme="dark"] {
-    --bg: #0E2A46; --bg-raised: #123457; --bg-sunken: #0A2038;
-    --text: #EAF1FB; --text-soft: #9FBBD6; --text-faint: #6D89A8;
-    --line: rgba(234,241,251,0.20); --line-soft: rgba(234,241,251,0.09);
-    --accent: #F2865A; --accent-soft: rgba(242,134,90,0.18); --accent-text: #F7A582;
-    --vendor: #7FA8D9; --vendor-soft: rgba(127,168,217,0.18); --vendor-text: #A4C4E8;
-    --mbie: #C79FE0; --mbie-soft: rgba(199,159,224,0.18); --mbie-text: #D8BBEE;
-    --rag-green: #6FCB9A; --rag-green-soft: rgba(111,203,154,0.16);
-    --rag-amber: #E2B15C; --rag-amber-soft: rgba(226,177,92,0.16);
-    --rag-red: #E8899A; --rag-red-soft: rgba(232,137,154,0.16);
-    --rag-grey: #7E93AC; --rag-grey-soft: rgba(126,147,172,0.18);
+    --ground: #10151A; --surface: #171E25; --surface-2: #1E262E;
+    --ink: #E6ECF1; --ink-2: #A9B6C0; --ink-3: #77858F;
+    --rule: #2A343D; --rule-2: #3A4650;
+    --accent: #3FA7AE; --accent-soft: #14343A; --accent-ink: #7FCBD1;
+    --critical: #E0736A; --critical-soft: #3A1F1D;
+    --warn: #D6A44E; --warn-soft: #332713;
+    --ok: #6BB183; --ok-soft: #1B2E22;
+    --done: #6D7A85; --done-soft: #232C34; --idle-soft: #232C34;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
   }
-  :root[data-theme="light"] {
-    --bg: #EEF0EA; --bg-raised: #F9FAF5; --bg-sunken: #E4E7DD;
-    --text: #172436; --text-soft: #55637A; --text-faint: #8993A4;
-    --line: rgba(23,36,54,0.16); --line-soft: rgba(23,36,54,0.08);
-    --accent: #D3552E; --accent-soft: rgba(211,85,46,0.13); --accent-text: #B8461F;
-    --vendor: #2F5D7C; --vendor-soft: rgba(47,93,124,0.12); --vendor-text: #24485F;
-    --mbie: #6B4C82; --mbie-soft: rgba(107,76,130,0.12); --mbie-text: #593D6C;
-    --rag-green: #3F6E52; --rag-green-soft: rgba(63,110,82,0.14);
-    --rag-amber: #A8791F; --rag-amber-soft: rgba(168,121,31,0.16);
-    --rag-red: #8E3B47; --rag-red-soft: rgba(142,59,71,0.14);
-    --rag-grey: #7C8698; --rag-grey-soft: rgba(124,134,152,0.14);
-  }
+
   * { box-sizing: border-box; }
-  html, body { background: var(--bg); color: var(--text); font-family: var(--font-body); margin: 0; }
-  ::selection { background: var(--accent-soft); }
-  a { color: var(--vendor-text); }
-  @media (prefers-reduced-motion: no-preference) {
-    .page { animation: settle 380ms ease-out; }
-    @keyframes settle { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+  body {
+    background: var(--ground); color: var(--ink);
+    font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    font-size: 15px; line-height: 1.55; margin: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 26px 20px 60px; display: flex; flex-direction: column; gap: 16px; }
+
+  .titlebar { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px 18px; }
+  .titlebar h1 {
+    font-family: Newsreader, Georgia, serif; font-weight: 500;
+    font-size: 1.5rem; letter-spacing: -.01em; margin: 0;
+  }
+  .titlebar .meta {
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 11px;
+    letter-spacing: .06em; color: var(--ink-3);
+  }
+  .hint {
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 10.5px;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--accent);
   }
 
-  .site-nav { position: sticky; top: 0; z-index: 20; background: var(--bg-raised); border-bottom: 1px solid var(--line);
-    display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 24px; }
-  .site-nav-brand { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--text); text-decoration: none; padding: 14px 0; letter-spacing: -0.01em; }
-  .site-nav-links { display: flex; gap: 2px; }
-  .site-nav-links a { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
-    color: var(--text-soft); text-decoration: none; padding: 18px 14px; border-bottom: 2px solid transparent;
-    transition: color 150ms ease, border-color 150ms ease; }
-  .site-nav-links a:hover { color: var(--text); }
-  .site-nav-links a:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
-  .site-nav-links a.-active { color: var(--accent-text); border-bottom-color: var(--accent); }
-  @media (max-width: 640px) {
-    .site-nav { flex-wrap: wrap; padding: 10px 16px; }
-    .site-nav-links { gap: 0; flex-wrap: wrap; }
-    .site-nav-links a { padding: 8px 10px; }
+  .chart-shell { border: 1px solid var(--rule); border-radius: 3px; background: var(--surface); box-shadow: var(--shadow); overflow-x: auto; }
+  .chart { min-width: 1120px; }
+
+  .grid-row { display: grid; grid-template-columns: 268px 1fr; border-bottom: 1px solid var(--rule); }
+  .grid-row:last-child { border-bottom: 0; }
+
+  .rowlabel { padding: 10px 14px; border-right: 1px solid var(--rule); display: flex; flex-direction: column; gap: 2px; justify-content: center; }
+  .rowlabel .t { font-size: 13.5px; line-height: 1.3; }
+  .rowlabel .s { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 10px; color: var(--ink-3); letter-spacing: .05em; }
+
+  .track { position: relative; min-height: 44px; }
+
+  /* clickable rows */
+  .task { cursor: pointer; transition: background .12s; }
+  .task:hover { background: var(--surface-2); }
+  .task:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .task[aria-expanded="true"] { background: var(--surface-2); }
+  .task[aria-expanded="true"] .rowlabel .t { font-weight: 600; }
+
+  /* axis */
+  .axis { background: var(--surface-2); }
+  .axis .rowlabel { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+  .axis .track { min-height: 38px; }
+  .months { position: absolute; inset: 0; }
+  .month {
+    position: absolute; top: 0; height: 100%; border-left: 1px solid var(--rule-2);
+    padding: 8px 0 0 7px; font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 10.5px; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-2);
   }
-  /* ===== SHARED TOKENS END ===== */
+  .month:first-child { border-left: 0; }
 
-  /* ===== SHARED GATE START — keep identical across all pages ===== */
-  body:not(.unlocked) .site-nav,
-  body:not(.unlocked) .page,
-  body:not(.unlocked) .wrap { display: none; }
-  .gate-overlay { position: fixed; inset: 0; z-index: 999; display: flex; align-items: center; justify-content: center; background: var(--bg); }
-  body.unlocked .gate-overlay { display: none; }
-  .gate-box { width: 100%; max-width: 320px; padding: 32px; text-align: center; }
-  .gate-brand { font-family: var(--font-display); font-weight: 700; font-size: 17px; margin-bottom: 10px; }
-  .gate-msg { font-size: 13.5px; color: var(--text-soft); margin: 0 0 18px; }
-  .gate-input { width: 100%; padding: 10px 12px; margin-bottom: 10px; border: 1px solid var(--line); border-radius: 5px; background: var(--bg-raised); color: var(--text); font-size: 14px; }
-  .gate-btn { width: 100%; padding: 10px; border: none; border-radius: 5px; background: var(--accent); color: #fff; font-weight: 600; font-size: 14px; cursor: pointer; }
-  .gate-error { font-size: 12.5px; color: var(--rag-red, #B3261E); margin-top: 10px; }
-  .nav-logout { opacity: 0.55; cursor: pointer; }
-  .nav-logout:hover { opacity: 1; }
-  /* ===== SHARED GATE END ===== */
+  /* group bands */
+  .band .rowlabel { background: var(--surface-2); font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); }
+  .band .track { background: var(--surface-2); min-height: 32px; }
+  .summary-bar { position: absolute; top: 12px; height: 8px; background: var(--ink-3); opacity: .45; }
+  .summary-bar::before, .summary-bar::after { content: ""; position: absolute; top: 0; width: 2px; height: 14px; background: var(--ink-3); }
+  .summary-bar::before { left: 0; } .summary-bar::after { right: 0; }
 
-  .page { max-width: 1040px; margin: 0 auto; padding: 40px 24px 70px; }
-  .kicker { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-soft); margin-bottom: 8px; }
-  .titleblock { border-bottom: 2px solid var(--text); padding-bottom: 16px; margin-bottom: 28px; }
-  .titleblock h1 { font-family: var(--font-display); font-weight: 700; font-size: 32px; letter-spacing: -0.01em; margin: 0 0 8px; text-wrap: balance; }
-  .titleblock p { font-size: 13.5px; line-height: 1.6; color: var(--text-soft); max-width: 74ch; margin: 0; }
-  .titleblock p strong { color: var(--text); font-weight: 600; }
+  /* bars */
+  .bar {
+    position: absolute; top: 11px; height: 22px; border-radius: 2px;
+    background: var(--accent-soft); border: 1px solid var(--accent);
+    display: flex; align-items: center; padding: 0 7px;
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 10px;
+    color: var(--accent-ink); white-space: nowrap; overflow: hidden;
+  }
+  .bar.crit { background: var(--critical-soft); border-color: var(--critical); color: var(--critical); font-weight: 500; }
+  .bar.done { background: var(--done-soft); border-color: var(--done); color: var(--done); }
+  .bar.done::after { content: "✓"; margin-left: auto; font-size: 11px; }
+  .bar.blocked {
+    background: var(--warn-soft); border-color: var(--warn); color: var(--warn);
+    background-image: repeating-linear-gradient(45deg, transparent 0 5px, rgba(154,103,20,.16) 5px 10px);
+  }
+  .bar.ok { background: var(--ok-soft); border-color: var(--ok); color: var(--ok); }
+  .bar.fade { border-style: dashed; -webkit-mask-image: linear-gradient(to right, #000 55%, transparent 100%); mask-image: linear-gradient(to right, #000 55%, transparent 100%); }
+  .bar.clip-left { border-left-style: dotted; }
+  .bar.open-left { border-left: 0; -webkit-mask-image: linear-gradient(to right, transparent 0, #000 14%); mask-image: linear-gradient(to right, transparent 0, #000 14%); }
+  .bar.seg { background: var(--accent-soft); border-color: var(--accent); }
+  .bar.seg.n2 { opacity: .85; } .bar.seg.n3 { opacity: .7; } .bar.seg.n4 { opacity: .55; }
 
-  h2.section-h { font-family: var(--font-display); font-weight: 700; font-size: 15px; margin: 0 0 14px; }
-  .two-col { display: grid; grid-template-columns: 1.3fr 1fr; gap: 44px; }
-  @media (max-width: 760px) { .two-col { grid-template-columns: 1fr; } }
-  section + section { margin-top: 34px; }
+  /* today marker */
+  .today {
+    position: absolute; top: 0; bottom: 0; width: 0;
+    border-left: 1px dashed var(--critical); opacity: .55; z-index: 3;
+    pointer-events: none;
+  }
+  .axis .today { opacity: 1; }
+  .axis .today::after {
+    content: "TODAY"; position: absolute; top: 2px; left: 5px;
+    font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 9px;
+    letter-spacing: .1em; color: var(--critical); background: var(--surface-2);
+    padding: 1px 4px; opacity: 1;
+  }
 
-  .now-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
-  .now-list li { font-size: 13px; line-height: 1.6; color: var(--text-soft); padding-left: 16px; border-left: 2px solid var(--line); }
-  .now-list li strong { color: var(--text); font-weight: 600; }
-  .now-list.-blockers li { border-left-color: var(--rag-amber); }
+  /* milestones */
+  .ms-row .track { min-height: 58px; }
+  .ms { position: absolute; top: 7px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 4px; width: 116px; }
+  .ms .dia { width: 11px; height: 11px; background: var(--critical); transform: rotate(45deg); }
+  .ms .lbl { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 9.5px; line-height: 1.3; text-align: center; color: var(--ink-2); }
+  .ms .lbl b { display: block; color: var(--ink); font-weight: 500; }
 
-  table.plain { width: 100%; border-collapse: collapse; font-size: 12.5px; }
-  table.plain th { text-align: left; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-faint); font-weight: 600; padding: 0 0 8px; border-bottom: 1px solid var(--line); }
-  table.plain td { padding: 9px 0; border-bottom: 1px solid var(--line-soft); vertical-align: top; color: var(--text-soft); }
-  table.plain td:first-child { font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--text); white-space: nowrap; padding-right: 16px; }
-  table.plain td strong { color: var(--text); font-weight: 600; }
+  /* inline detail, opens directly under the clicked row */
+  .detail-row {
+    border-bottom: 1px solid var(--rule);
+    background: var(--surface-2);
+    box-shadow: inset 3px 0 0 var(--accent);
+  }
+  .detail-inner {
+    position: sticky; left: 0;
+    width: min(880px, 100vw - 40px);
+    padding: 16px 22px 18px;
+    display: flex; flex-direction: column; gap: 9px;
+  }
+  .detail-inner h3 { font-family: Newsreader, Georgia, serif; font-weight: 500; font-size: 1.2rem; margin: 0; letter-spacing: -.01em; color: var(--ink); }
+  .detail-inner .kv { display: grid; grid-template-columns: 84px 1fr; gap: 4px 16px; font-size: 13.5px; }
+  .detail-inner .k { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); padding-top: 3px; }
+  .detail-inner .v { color: var(--ink-2); }
+  .detail-inner .v strong { color: var(--ink); font-weight: 600; }
+  .pill {
+    align-self: flex-start;
+    display: inline-block; font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 2px;
+  }
+  .p-done { background: var(--done-soft); color: var(--done); }
+  .p-active { background: var(--critical-soft); color: var(--critical); }
+  .p-next { background: var(--accent-soft); color: var(--accent-ink); }
+  .p-held { background: var(--warn-soft); color: var(--warn); }
+  .p-cont { background: var(--ok-soft); color: var(--ok); }
 
-  .products { display: flex; flex-direction: column; gap: 12px; }
-  .product { background: var(--bg-raised); border: 1px solid var(--line); border-radius: 5px; padding: 14px 16px; }
-  .product-name { font-weight: 700; font-size: 13.5px; margin-bottom: 4px; }
-  .product-desc { font-size: 12px; line-height: 1.55; color: var(--text-soft); }
-  .product-target { font-family: var(--font-mono); font-size: 10.5px; color: var(--vendor-text); margin-top: 6px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 7px 20px; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 10px; color: var(--ink-2); letter-spacing: .03em; }
+  .legend span { display: flex; align-items: center; gap: 6px; }
+  .sw { width: 20px; height: 10px; border-radius: 2px; border: 1px solid var(--accent); background: var(--accent-soft); }
+  .sw.crit { border-color: var(--critical); background: var(--critical-soft); }
+  .sw.done { border-color: var(--done); background: var(--done-soft); }
+  .sw.blocked { border-color: var(--warn); background: var(--warn-soft); }
+  .sw.ok { border-color: var(--ok); background: var(--ok-soft); }
+  .sw.dia { width: 10px; height: 10px; transform: rotate(45deg); border: 0; border-radius: 0; background: var(--critical); }
 
-  .domains { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 14px; }
-  @media (max-width: 760px) { .domains { grid-template-columns: 1fr; } }
-  .domain-card { background: var(--bg-raised); border: 1px solid var(--line); border-radius: 5px; padding: 15px 16px; }
-  .domain-name { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 6px; }
-  .domain-state { font-size: 12px; line-height: 1.5; color: var(--text-soft); }
-
-  dl.facts { margin: 0; display: flex; flex-direction: column; gap: 9px; }
-  dl.facts div { display: flex; gap: 10px; font-size: 12.5px; padding-bottom: 9px; border-bottom: 1px solid var(--line-soft); }
-  dl.facts dt { font-family: var(--font-mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-faint); flex: 0 0 108px; }
-  dl.facts dd { margin: 0; color: var(--text); }
-  .contact-row { display: flex; justify-content: space-between; gap: 10px; font-size: 12px; padding: 7px 0; border-bottom: 1px solid var(--line-soft); color: var(--text-soft); }
-  .contact-row b { color: var(--text); font-weight: 600; }
-
-  .foot { margin-top: 34px; padding-top: 18px; border-top: 1px solid var(--line-soft); font-size: 11.5px; color: var(--text-faint); line-height: 1.65; max-width: 82ch; font-family: var(--font-mono); }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  @media (max-width: 620px) { .wrap { padding: 18px 14px 48px; } .grid-row { grid-template-columns: 170px 1fr; } }
 </style>
-</head>
-<body>
 
-<!-- SHARED GATE START — keep identical across all pages -->
-<div class="gate-overlay" id="gate">
-  <div class="gate-box">
-    <div class="gate-brand">NexWave Programme Hub</div>
-    <p class="gate-msg" id="gate-msg">This page is password protected.</p>
-    <input class="gate-input" id="gate-pass" type="password" placeholder="Password" autocomplete="off">
-    <button class="gate-btn" id="gate-submit">Unlock</button>
-    <p class="gate-error" id="gate-error" hidden>Incorrect password, try again.</p>
+<div class="wrap">
+
+  <div class="titlebar">
+    <h1>NexWave Programme Timeline</h1>
+    <span class="meta">v3.6 &middot; 2 Sep 2026 &middot; Jun 2026 to Mar 2027</span>
   </div>
-</div>
-<!-- SHARED GATE END -->
+  <div class="hint">Click a row to open its goal, output and gate in place</div>
 
-<!-- SHARED NAV START -->
-<nav class="site-nav">
-  <a class="site-nav-brand" href="index.html">NexWave R&amp;D</a>
-  <div class="site-nav-links">
-    <a href="index.html" class="-active">Home</a>
-    <a href="orientation.html">Orientation</a>
-    <a href="milestones.html">Milestones</a>
-    <a href="rd.html">R&amp;D Objectives</a>
-    <a href="vendors.html">CD Vendors</a>
-    <a href="#" id="nav-logout" class="nav-logout">Log out</a>
-  </div>
-</nav>
-<!-- SHARED NAV END -->
+  <div class="chart-shell">
+    <div class="chart">
 
-<div class="page">
-  <div class="titleblock">
-    <div class="kicker">nexwave-rd &middot; programme control panel</div>
-    <h1>NexWave Health</h1>
-    <p>NZ-sovereign clinical AI for GP workflow, validated in NZ general practice. Two tools:
-      <strong>Inbox Helper</strong> and <strong>Care Gap Finder</strong>. MBIE-funded R&amp;D, 24 months to
-      March 2028. Founder is a practising GP and full-stack developer. Partner: Medtech (~60% NZ PMS share).</p>
-  </div>
-
-  <div class="two-col">
-    <div>
-      <section>
-        <h2 class="section-h">Focus</h2>
-        <ul class="now-list">
-          <li><strong>Stage 2 data-quality pass is the gate on GP labelling.</strong> Regenerate ~352
-            narratives after clinical sign-off, then the full GP labelling pass opens, the bake-off's
-            critical path. 72 days to 11&nbsp;Sep&nbsp;2026.</li>
-          <li><strong>Q1 MBIE claim resubmitted 25 Jun</strong>, awaiting MBIE review. $29,631.26 (40%) on
-            $74,078.15 eligible spend.</li>
-          <li><strong>CD next: self-author the Privacy Impact Assessment.</strong> R2 privacy review decided
-            (Gen Privacy, $5k hybrid), awaiting Lisa's reply on the budget increase. CD-3: revise Ting's
-            scan-signal list before Session&nbsp;1, Wed&nbsp;15&nbsp;Jul.</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2 class="section-h">Blockers</h2>
-        <ul class="now-list -blockers">
-          <li>CD-2 international vendors: enquiries out to API Connects, Addepto, Mistral AI, waiting on replies before the MBIE package can be assembled.</li>
-          <li>Architecture bake-off waiting on GP labelling to unblock the synthetic dataset.</li>
-          <li>R2 privacy engagement decided, waiting on Lisa's reply to the budget increase before Amelia can be confirmed.</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2 class="section-h">Next deadlines</h2>
-        <table class="plain">
-          <tr><th>Date</th><th>Item</th></tr>
-          <tr><td>31 Aug 2026</td><td>Q2 MBIE claim</td></tr>
-          <tr><td>11 Sep 2026</td><td><strong>Obj 1 deliverables complete</strong> &mdash; architecture, prototypes, sandboxes</td></tr>
-        </table>
-      </section>
-    </div>
-
-    <div>
-      <section>
-        <h2 class="section-h">Products</h2>
-        <div class="products">
-          <div class="product">
-            <div class="product-name">Inbox Helper</div>
-            <div class="product-desc">Reads every incoming inbox item (labs, radiology, discharge summaries, specialist letters, portal messages) and assigns an urgency level, so the GP works the queue by what needs attention, not arrival order.</div>
-            <div class="product-target">Target: &ge;90% triage accuracy &middot; &ge;99% sensitivity on critical findings</div>
-          </div>
-          <div class="product">
-            <div class="product-name">Care Gap Finder</div>
-            <div class="product-desc">Continuously scans the enrolled register and surfaces patients overdue for diabetes, CVD-risk, and other key checks, as they fall due rather than only when a nurse runs a report.</div>
-            <div class="product-target">Target: &ge;95% CVDRA accuracy</div>
+      <div class="grid-row axis">
+        <div class="rowlabel">Outcome</div>
+        <div class="track"><div class="today" style="left:30.69%"></div>
+          <div class="months">
+            <div class="month" style="left:0%;width:9.9%">Jun 26</div>
+            <div class="month" style="left:9.9%;width:10.23%">Jul</div>
+            <div class="month" style="left:20.13%;width:10.23%">Aug</div>
+            <div class="month" style="left:30.36%;width:9.9%">Sep</div>
+            <div class="month" style="left:40.26%;width:10.24%">Oct</div>
+            <div class="month" style="left:50.5%;width:9.9%">Nov</div>
+            <div class="month" style="left:60.4%;width:10.23%">Dec</div>
+            <div class="month" style="left:70.63%;width:10.23%">Jan 27</div>
+            <div class="month" style="left:80.86%;width:9.24%">Feb</div>
+            <div class="month" style="left:90.1%;width:9.9%">Mar</div>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section>
-        <h2 class="section-h">Facts</h2>
-        <dl class="facts">
-          <div><dt>Contract</dt><dd>CONT-109091-N2RD-NSIWKC</dd></div>
-          <div><dt>Term</dt><dd>12 Mar 2026 &ndash; 11 Mar 2028 (24 months)</dd></div>
-          <div><dt>Partner</dt><dd>Medtech Global (~60% NZ PMS share)</dd></div>
-          <div><dt>MBIE contact</dt><dd>Lisa Pritchard</dd></div>
-        </dl>
-      </section>
+      <div class="grid-row ms-row">
+        <div class="rowlabel"><span class="t">Milestones</span><span class="s">HARD DEADLINES</span></div>
+        <div class="track"><div class="today" style="left:30.69%"></div>
+          <div class="ms" style="left:34.98%"><div class="dia"></div><div class="lbl"><b>~15 Sep</b>Obj 1 &middot; Q2 claim &middot; CD-2 closes</div></div>
+          <div class="ms" style="left:65.02%"><div class="dia"></div><div class="lbl"><b>~15 Dec</b>Q3 claim</div></div>
+          <div class="ms" style="left:94%"><div class="dia"></div><div class="lbl"><b>~mid-Mar 27</b>Obj 2 &middot; Q4 claim</div></div>
+        </div>
+      </div>
 
-      <section>
-        <h2 class="section-h">Key contacts</h2>
-        <div class="contact-row"><b>Lisa Pritchard</b><span>MBIE Innovation Services</span></div>
-        <div class="contact-row"><b>Ting (Shih-Ting Chou)</b><span>R&amp;D Programme Manager</span></div>
-        <div class="contact-row"><b>Helen Yu</b><span>Accountant, financial only</span></div>
-      </section>
+      <div class="grid-row band">
+        <div class="rowlabel">Objective 1 delivery</div>
+        <div class="track"><div class="today" style="left:30.69%"></div><div class="summary-bar" style="left:0%;width:33.66%"></div></div>
+      </div>
+
+      <div class="grid-row task" data-id="t1" tabindex="0" role="button" aria-expanded="false">
+        <div class="rowlabel"><span class="t">Inbox Helper testing</span><span class="s">1 &middot; R&amp;D &middot; DONE 30 JUN</span></div>
+        <div class="track"><div class="today" style="left:30.69%"></div><div class="bar done open-left" style="left:0%;width:9.57%"></div></div>
+      </div>
+
+      <div class="grid-row task" data-id="t2" tabindex="0" role="button" aria-expanded="false">
+        <div class="rowlabel"><span class="t">Care Gap dataset built</span><span class="s">2 &middot; R&amp;D &middot; DONE 26 JUL</span></div>
+        <div class="track"><div class="today" style="left:30.69%"></div><div class="bar done open-left" style="left:0%;width:18.15%"></div></div>
+      </div>
+
+      <div class="grid-row task" data-id="t3" tabindex="0" role="button" aria-expanded="false">
+        <div class="rowlabel"><span class="t">Care Gap testing</span><span class="s">3 &middot; R&amp;D &middot; ALMOST DONE</span></div>
+        <div class="track"><div class="today" style="left:30.69%"></div><div class="bar crit" style="left:18.48%;width:12.87%">from 27 Jul</div></div>
+      </div>
+
+      <div class="grid-row task" data-id="t4" tabindex="0" role="button" aria-expanded="false">
+        <div class="rowlabel"><span class="t">Architecture decision document</span><span class="s">4 &middot; R&amp;D &middot; SINCE 24 AUG</span></div>
+        <div class="track"><div class="today" style="left:30.69%"></div><div class="bar crit" style="left:27.72%;width:5.94%">&rarr; 11 Sep</div></div>
+      </div>
+
+      <div class="grid-row band">
+        <div class="rowlabel">Objective 2 delivery</div>
+        <div class="track"><div class="today" style="left:30.69%"></div><div class="summary-bar" style="left:40.26%;width:53.14%"></div></div>
+      </div>
+
+      <div class="grid-row task" data-id="t5" tabindex="0" role="button" aria-expanded="false">
+        <div class="rowlabel"><span class="t">Real-world data handling, Inbox</span><span class="s">5 &middot; R&amp;D &middot; 4 WORK PACKAGES</span></div>
+        <div class="track"><div class="today" style="left:30.69%"></div>
+          <div class="bar seg" style="left:40.26%;width:13.3%">Formats</div>
+          <div class="bar seg n2" style="left:53.56%;width:13.3%">Patient context</div>
+          <div class="bar seg n3" style="left:66.86%;width:13.3%">Confidence</div>
+          <div class="bar seg n4" style="left:80.16%;width:13.24%">Extraction &middot; GP trial</div>
+        </div>
+      </div>
+
+      <div class="grid-row band">
+        <div class="rowlabel">Capability Development</div>
+        <div class="track"><div class="today" style="left:30.69%"></div><div class="summary-bar" style="left:0%;width:100%"></div></div>
+      </div>
+
+      <div class="grid-row task" data-id="r1" tabindex="0" role="button" aria-expanded="false">
+        <div class="rowlabel"><span class="t">R1 regulatory gap analysis</span><span class="s">6 &middot; CD &middot; SINCE 29 JUN</span></div>
+        <div class="track"><div class="today" style="left:30.69%"></div><div class="bar fade" style="left:9.24%;width:43%">terms agreed 29 Jun &middot; awaiting Buddle Findlay quote</div></div>
+      </div>
+
+      <div class="grid-row task" data-id="r2" tabindex="0" role="button" aria-expanded="false">
+        <div class="rowlabel"><span class="t">R2 cross-border DPIA</span><span class="s">7 &middot; CD &middot; GATES OBJ 2</span></div>
+        <div class="track"><div class="today" style="left:30.69%"></div><div class="bar fade" style="left:34.5%;width:20%">approved 19 Aug &middot; before real data</div></div>
+      </div>
+
+      <div class="grid-row task" data-id="i1" tabindex="0" role="button" aria-expanded="false">
+        <div class="rowlabel"><span class="t">I1 experiment tracking</span><span class="s">8 &middot; CD &middot; SPEND HELD</span></div>
+        <div class="track"><div class="today" style="left:30.69%"></div><div class="bar blocked open-left" style="left:0%;width:38.61%">in contact since May &middot; spend held to 11 Sep</div></div>
+      </div>
+
+      <div class="grid-row task" data-id="cd3" tabindex="0" role="button" aria-expanded="false">
+        <div class="rowlabel"><span class="t">CD-3 project management coaching</span><span class="s">9 &middot; CD &middot; ONGOING</span></div>
+        <div class="track"><div class="today" style="left:30.69%"></div><div class="bar ok open-left" style="left:0%;width:100%">running since May 2026 &middot; Session 2 on 3 Sep &middot; to Jun 2027</div></div>
+      </div>
+
+      <div class="grid-row band">
+        <div class="rowlabel">Programme Operations</div>
+        <div class="track"><div class="today" style="left:30.69%"></div><div class="summary-bar" style="left:20.13%;width:74.59%"></div></div>
+      </div>
+
+      <div class="grid-row task" data-id="ops" tabindex="0" role="button" aria-expanded="false">
+        <div class="rowlabel"><span class="t">Quarterly claim and report</span><span class="s">10 &middot; OPS</span></div>
+        <div class="track"><div class="today" style="left:30.69%"></div>
+          <div class="bar" style="left:20.13%;width:14.85%">Q2</div>
+          <div class="bar" style="left:40.26%;width:24.76%">Q3</div>
+          <div class="bar" style="left:70.63%;width:24.09%">Q4</div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <section>
-    <h2 class="section-h">Domains</h2>
-    <div class="domains">
-      <div class="domain-card">
-        <div class="domain-name">R&amp;D</div>
-        <div class="domain-state">Obj 1 active: architecture v2 drafted, bake-off pending synthetic dataset and GP labelling. Obj 2-4 run sequentially to 2028. &rarr; <a href="rd.html">Objectives</a></div>
-      </div>
-      <div class="domain-card">
-        <div class="domain-name">Capability Development</div>
-        <div class="domain-state">$36k across 3 streams, 9 locked line items, zero spend to date. &rarr; <a href="vendors.html">Vendor status</a></div>
-      </div>
-      <div class="domain-card">
-        <div class="domain-name">Programme Operations</div>
-        <div class="domain-state">Q1 claim resubmitted 25 Jun, awaiting MBIE review. Payroll, finance, GST, MBIE relationship.</div>
-      </div>
-    </div>
-  </section>
+  <div class="legend">
+    <span><i class="sw done"></i> Done</span>
+    <span><i class="sw crit"></i> Critical path</span>
+    <span><i class="sw"></i> Task</span>
+    <span><i class="sw blocked"></i> Spend deliberately held</span>
+    <span><i class="sw ok"></i> Continuous</span>
+    <span><i class="sw dia"></i> Hard deadline</span>
+    <span>Faded left edge = began before this chart</span>
+    <span>Faded edge = end genuinely uncertain</span>
+  </div>
 
-  <p class="foot">Source: index-nexwave-rd.md, 13 Jul 2026. Not a live feed, rebuilt when the vault state moves materially.</p>
 </div>
+
 <script>
-(function () {
-  var PAGE_ROLE = "team";
-  var PASSWORDS = { guest: "compass", team: "keystone" };
-  var STORAGE_KEY = "nexhub_role";
-  var ALLOWED_GUEST_PAGES = ["milestones.html", "orientation.html"];
+  const DATA = {
+    t1: { title: "Inbox Helper architecture testing", status: ["Done", "p-done"],
+      goal: "Decide, on evidence, which AI configuration triages a GP inbox accurately enough at a sustainable cost.",
+      output: "A ranked comparison across model tiers, guidance styles and wiring, measuring clinical accuracy, cost per 1,000 items and latency.",
+      dates: "Completed 30 June 2026", gate: "None. It fed the decision document.",
+      note: "The bar clears 90%. Under-triage, the direction that harms patients, is reported separately from headline accuracy." },
+    t2: { title: "Care Gap Finder synthetic dataset", status: ["Done", "p-done"],
+      goal: "Create test material for cardiovascular risk work, since the existing 492 items are inbox-only and say nothing about CVD risk.",
+      output: "A clinical-truth layer with engine-computed answers, plus realistic practice-management records rendered on top.",
+      dates: "Completed 26 July 2026", gate: "Had to finish before Care Gap testing could start.",
+      note: "Built from nothing. It was the tightest item on the chart and it landed." },
+    t3: { title: "Care Gap Finder testing", status: ["Almost done", "p-active"],
+      goal: "Establish whether the chosen architecture reaches the cardiovascular risk accuracy bar of 95%.",
+      output: "Scored results against the synthetic dataset, with disagreements checked against the clinical rules.",
+      dates: "27 July 2026 to now", gate: "Gates the architecture decision document.",
+      note: "On the critical path. Nothing downstream can be written until this produces numbers." },
+    t4: { title: "Objective 1 architecture decision document", status: ["Under way", "p-active"],
+      goal: "Record the architecture choice and the evidence behind it, in a form MBIE can audit.",
+      output: "A written decision document: what was chosen, why, the sovereignty assessment, and what is needed before real patient data.",
+      dates: "Started 24 August 2026, due 11 September", gate: "Depends on both testing arms. One of five committed Objective 1 deliverables.",
+      note: "The end date is fixed and contractual. There is no slack behind it." },
+    t5: { title: "Objective 2 — real-world data handling for Inbox", status: ["In window, not started", "p-next"],
+      goal: "Find out whether the Objective 1 architecture survives contact with real, messy inbox data from many different labs and hospitals.",
+      output: "Four work packages, shown as segments. 1) Format handling across lab PDFs, letters, referrals and discharge summaries. 2) Applying patient-specific clinical context, including different cardiovascular thresholds for Māori and Pacific patients. 3) Confidence calibration good enough for safe automated action. 4) Complex extraction from discharge summaries, plus GP trial.",
+      dates: "~Oct 2026 – 11 Mar 2027", gate: "Needs Objective 1 closed, the DPIA in place, and sandbox access.",
+      note: "Committed targets: 90% accuracy on 2,000-plus real items, zero unsafe automated actions across 1,000-plus edge cases, 85% discharge extraction, and at least five GPs with 80% trusting the suggestions. Package ordering is indicative, not yet sequenced." },
+    r1: { title: "R1 — regulatory gap analysis and roadmap", status: ["In flight", "p-active"],
+      goal: "Know what regulation actually applies to these tools, and what has to be fixed before real patient data.",
+      output: "A written gap analysis and a remediation roadmap.",
+      dates: "Terms agreed 29 June 2026. End indicative.", gate: "Informs everything downstream in Objective 2.",
+      note: "Buddle Findlay have held both privacy impact assessments since 19 August; their scope and quote are awaited. No spend committed yet." },
+    r2: { title: "R2 — cross-border data handling DPIA", status: ["Ready to start", "p-next"],
+      goal: "Prove that handling patient data across borders is lawful, before any real patient data is touched.",
+      output: "A completed data protection impact assessment covering both tools.",
+      dates: "Soon. Must land before real data.", gate: "Gates Objective 2.",
+      note: "MBIE approved the variation on 19 August, so the block on spending is lifted." },
+    i1: { title: "I1 — experiment tracking and model registry", status: ["Spend held", "p-held"],
+      goal: "Make results reproducible and auditable, so a number quoted to MBIE traces back to a logged run rather than a memory.",
+      output: "A configured experiment tracking system, a model registry, and dataset lineage.",
+      dates: "In contact since May 2026. Spend held until 11 Sep.", gate: "Its funding window closes 26 September.",
+      note: "The vendor owes an outline. The deferral is deliberate, not drift, and will be stated in the Q2 progress report. The stream's own principle: a result without a logged run is hearsay at audit." },
+    cd3: { title: "CD-3 — project management coaching", status: ["Continuous", "p-cont"],
+      goal: "Ting runs the R&D programme independently.",
+      output: "Coaching session reports, a configured agile system with Kanban and a 24-month roadmap, budget tracking, risk register templates, vendor management workflows, and documented evidence of her progression.",
+      dates: "Running since May 2026, continuous to 26 Jun 2027", gate: "None. Runs alongside everything.",
+      note: "This chart is itself one of the outputs. Session 2 is on 3 September." },
+    ops: { title: "Quarterly claim and progress report", status: ["Q2 building", "p-active"],
+      goal: "Claim the funding actually spent, and tell MBIE how the research is going.",
+      output: "A cost report reconciling time and spend, plus a progress narrative, submitted through the Forge portal.",
+      dates: "Q2 ~18 Sep · Q3 ~15 Dec · Q4 ~mid-Mar 27", gate: "Each claim waits for the pay run that closes its period.",
+      note: "The claim and the narrative submit together. Dates shown are realistic submission, not the earlier nominal dates the contract prints." }
+  };
 
-  function roleAllows(role) {
-    if (role === "team") return true;
-    if (role === "guest") return PAGE_ROLE === "guest";
-    return false;
+  const rows = Array.from(document.querySelectorAll(".task"));
+
+  function closeAll() {
+    rows.forEach(r => r.setAttribute("aria-expanded", "false"));
+    document.querySelectorAll(".detail-row").forEach(n => n.remove());
   }
 
-  function applyNavForRole(role) {
-    if (role !== "guest") return;
-    var links = document.querySelectorAll(".site-nav-links a");
-    for (var i = 0; i < links.length; i++) {
-      if (links[i].id === "nav-logout") continue;
-      var href = links[i].getAttribute("href");
-      if (ALLOWED_GUEST_PAGES.indexOf(href) === -1) links[i].style.display = "none";
-    }
-    var brand = document.querySelector(".site-nav-brand");
-    if (brand) brand.setAttribute("href", "orientation.html");
+  function buildDetail(d) {
+    const wrap = document.createElement("div");
+    wrap.className = "detail-row";
+    const inner = document.createElement("div");
+    inner.className = "detail-inner";
+    inner.innerHTML =
+      '<h3>' + d.title + '</h3>' +
+      '<span class="pill ' + d.status[1] + '">' + d.status[0] + '</span>' +
+      '<div class="kv">' +
+        '<span class="k">Goal</span><span class="v"><strong>' + d.goal + '</strong></span>' +
+        '<span class="k">Output</span><span class="v">' + d.output + '</span>' +
+        '<span class="k">Timing</span><span class="v">' + d.dates + '</span>' +
+        '<span class="k">Gate</span><span class="v">' + d.gate + '</span>' +
+        '<span class="k">Note</span><span class="v">' + d.note + '</span>' +
+      '</div>';
+    wrap.appendChild(inner);
+    return wrap;
   }
 
-  function unlock(role) {
-    document.body.classList.add("unlocked");
-    applyNavForRole(role);
+  function select(row) {
+    const wasOpen = row.getAttribute("aria-expanded") === "true";
+    closeAll();
+    if (wasOpen) return;
+    const d = DATA[row.dataset.id];
+    if (!d) return;
+    row.setAttribute("aria-expanded", "true");
+    row.insertAdjacentElement("afterend", buildDetail(d));
   }
 
-  function showRestricted() {
-    document.getElementById("gate-msg").textContent = "This page isn't part of your shared link. Ask Ryo if you need access.";
-    document.getElementById("gate-pass").style.display = "none";
-    document.getElementById("gate-submit").style.display = "none";
-  }
-
-  var stored = localStorage.getItem(STORAGE_KEY);
-  if (stored && roleAllows(stored)) {
-    unlock(stored);
-  } else if (stored) {
-    showRestricted();
-  }
-
-  document.getElementById("gate-submit").addEventListener("click", function () {
-    var val = document.getElementById("gate-pass").value.trim().toLowerCase();
-    var role = null;
-    if (val === PASSWORDS.guest.toLowerCase()) role = "guest";
-    if (val === PASSWORDS.team.toLowerCase()) role = "team";
-    if (!role) {
-      document.getElementById("gate-error").hidden = false;
-      return;
-    }
-    localStorage.setItem(STORAGE_KEY, role);
-    if (roleAllows(role)) {
-      unlock(role);
-    } else {
-      showRestricted();
-    }
-  });
-
-  document.getElementById("gate-pass").addEventListener("keydown", function (e) {
-    if (e.key === "Enter") document.getElementById("gate-submit").click();
-  });
-
-  var logoutLink = document.getElementById("nav-logout");
-  if (logoutLink) {
-    logoutLink.addEventListener("click", function (e) {
-      e.preventDefault();
-      localStorage.removeItem(STORAGE_KEY);
-      location.reload();
+  rows.forEach(row => {
+    row.addEventListener("click", () => select(row));
+    row.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(row); }
     });
-  }
-})();
+  });
 </script>
-</body>
-</html>
