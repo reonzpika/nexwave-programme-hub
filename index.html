@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <title>NexWave Programme Timeline</title>
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
 <meta name="googlebot" content="noindex, nofollow">
@@ -77,7 +78,7 @@
   }
 
   .chart-shell { border: 1px solid var(--rule); border-radius: 3px; background: var(--surface); box-shadow: var(--shadow); overflow-x: auto; }
-  .chart { min-width: 1120px; }
+  .chart { min-width: 940px; }
 
   .grid-row { display: grid; grid-template-columns: 268px 1fr; border-bottom: 1px solid var(--rule); }
   .grid-row:last-child { border-bottom: 0; }
@@ -144,16 +145,20 @@
   }
   .axis .today { opacity: 1; }
   .axis .today::after {
-    content: "TODAY"; position: absolute; top: 2px; left: 5px;
+    content: "TODAY"; position: absolute; top: 21px; left: -5px; transform: translateX(-100%);
     font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 9px;
     letter-spacing: .1em; color: var(--critical); background: var(--surface-2);
     padding: 1px 4px; opacity: 1;
   }
 
   /* milestones */
-  .ms-row .track { min-height: 58px; }
-  .ms { position: absolute; top: 7px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 4px; width: 116px; }
-  .ms .dia { width: 11px; height: 11px; background: var(--critical); transform: rotate(45deg); }
+  .ms-row .track { min-height: 92px; }
+  .ms { position: absolute; top: 7px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 4px; width: 104px; }
+  .ms.low { top: 48px; }
+  .ms.end { transform: translateX(-100%); align-items: flex-end; }
+  .ms.end .dia { position: relative; left: -4px; }
+  .ms.end .lbl { text-align: right; }
+  .ms .dia { flex: none; width: 11px; height: 11px; background: var(--critical); transform: rotate(45deg); }
   .ms .lbl { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 9.5px; line-height: 1.3; text-align: center; color: var(--ink-2); }
   .ms .lbl b { display: block; color: var(--ink); font-weight: 500; }
 
@@ -195,6 +200,7 @@
   .sw.ok { border-color: var(--ok); background: var(--ok-soft); }
   .sw.dia { width: 10px; height: 10px; transform: rotate(45deg); border: 0; border-radius: 0; background: var(--critical); }
 
+  .footnote { font-size: 11.5px; line-height: 1.6; color: var(--ink-3); margin: 0; max-width: 78ch; }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
   @media (max-width: 620px) { .wrap { padding: 18px 14px 48px; } .grid-row { grid-template-columns: 170px 1fr; } }
 </style>
@@ -203,116 +209,173 @@
 
   <div class="titlebar">
     <h1>NexWave Programme Timeline</h1>
-    <span class="meta">v3.6 &middot; 2 Sep 2026 &middot; Jun 2026 to Mar 2027</span>
+    <span class="meta">v4.0 &middot; 4 Sep 2026 &middot; Mar 2026 to Mar 2028, the full grant</span>
   </div>
-  <div class="hint">Click a row to open its goal, output and gate in place</div>
+  <div class="hint">Click a row to open its goal, output and gate in place &middot; R&amp;D bars reflect 2 Sep status</div>
 
   <div class="chart-shell">
     <div class="chart">
 
       <div class="grid-row axis">
         <div class="rowlabel">Outcome</div>
-        <div class="track"><div class="today" style="left:30.69%"></div>
+        <div class="track"><div class="today" style="left:24.11%"></div>
           <div class="months">
-            <div class="month" style="left:0%;width:9.9%">Jun 26</div>
-            <div class="month" style="left:9.9%;width:10.23%">Jul</div>
-            <div class="month" style="left:20.13%;width:10.23%">Aug</div>
-            <div class="month" style="left:30.36%;width:9.9%">Sep</div>
-            <div class="month" style="left:40.26%;width:10.24%">Oct</div>
-            <div class="month" style="left:50.5%;width:9.9%">Nov</div>
-            <div class="month" style="left:60.4%;width:10.23%">Dec</div>
-            <div class="month" style="left:70.63%;width:10.23%">Jan 27</div>
-            <div class="month" style="left:80.86%;width:9.24%">Feb</div>
-            <div class="month" style="left:90.1%;width:9.9%">Mar</div>
+            <div class="month" style="left:0%;width:13.01%">Mar&ndash;Jun 26</div>
+            <div class="month" style="left:13.15%;width:12.47%">Jun&ndash;Sep 26</div>
+            <div class="month" style="left:25.75%;width:12.33%">Sep&ndash;Dec 26</div>
+            <div class="month" style="left:38.22%;width:12.19%">Dec&ndash;Mar 27</div>
+            <div class="month" style="left:50.55%;width:12.46%">Mar&ndash;Jun 27</div>
+            <div class="month" style="left:63.15%;width:12.47%">Jun&ndash;Sep 27</div>
+            <div class="month" style="left:75.75%;width:12.33%">Sep&ndash;Dec 27</div>
+            <div class="month" style="left:88.22%;width:11.78%">Dec&ndash;Mar 28</div>
           </div>
         </div>
       </div>
 
       <div class="grid-row ms-row">
         <div class="rowlabel"><span class="t">Milestones</span><span class="s">HARD DEADLINES</span></div>
-        <div class="track"><div class="today" style="left:30.69%"></div>
-          <div class="ms" style="left:34.98%"><div class="dia"></div><div class="lbl"><b>~15 Sep</b>Obj 1 &middot; Q2 claim &middot; CD-2 closes</div></div>
-          <div class="ms" style="left:65.02%"><div class="dia"></div><div class="lbl"><b>~15 Dec</b>Q3 claim</div></div>
-          <div class="ms" style="left:94%"><div class="dia"></div><div class="lbl"><b>~mid-Mar 27</b>Obj 2 &middot; Q4 claim</div></div>
+        <div class="track"><div class="today" style="left:24.11%"></div>
+          <div class="ms" style="left:25.62%"><div class="dia"></div><div class="lbl"><b>~15 Sep 26</b>Obj 1 &middot; Q2 claim &middot; CD-2 shuts</div></div>
+          <div class="ms low" style="left:38.08%"><div class="dia"></div><div class="lbl"><b>~15 Dec 26</b>Q3 claim</div></div>
+          <div class="ms" style="left:50.41%"><div class="dia"></div><div class="lbl"><b>~15 Mar 27</b>Obj 2 &middot; Q4 claim</div></div>
+          <div class="ms low" style="left:63.01%"><div class="dia"></div><div class="lbl"><b>~15 Jun 27</b>Q5 claim</div></div>
+          <div class="ms" style="left:66.58%"><div class="dia"></div><div class="lbl"><b>11 Jul 27</b>Obj 3 due</div></div>
+          <div class="ms low" style="left:75.62%"><div class="dia"></div><div class="lbl"><b>~15 Sep 27</b>Q6 claim</div></div>
+          <div class="ms" style="left:88.08%"><div class="dia"></div><div class="lbl"><b>~15 Dec 27</b>Q7 claim</div></div>
+          <div class="ms low end" style="left:100%"><div class="dia"></div><div class="lbl"><b>11 Mar 28</b>Obj 4 &middot; grant ends</div></div>
         </div>
       </div>
 
       <div class="grid-row band">
         <div class="rowlabel">Objective 1 delivery</div>
-        <div class="track"><div class="today" style="left:30.69%"></div><div class="summary-bar" style="left:0%;width:33.66%"></div></div>
+        <div class="track"><div class="today" style="left:24.11%"></div><div class="summary-bar" style="left:0%;width:25.07%"></div></div>
       </div>
 
       <div class="grid-row task" data-id="t1" tabindex="0" role="button" aria-expanded="false">
         <div class="rowlabel"><span class="t">Inbox Helper testing</span><span class="s">1 &middot; R&amp;D &middot; DONE 30 JUN</span></div>
-        <div class="track"><div class="today" style="left:30.69%"></div><div class="bar done open-left" style="left:0%;width:9.57%"></div></div>
+        <div class="track"><div class="today" style="left:24.11%"></div><div class="bar done open-left" style="left:0%;width:15.07%"></div></div>
       </div>
 
       <div class="grid-row task" data-id="t2" tabindex="0" role="button" aria-expanded="false">
         <div class="rowlabel"><span class="t">Care Gap dataset built</span><span class="s">2 &middot; R&amp;D &middot; DONE 26 JUL</span></div>
-        <div class="track"><div class="today" style="left:30.69%"></div><div class="bar done open-left" style="left:0%;width:18.15%"></div></div>
+        <div class="track"><div class="today" style="left:24.11%"></div><div class="bar done open-left" style="left:0%;width:18.63%"></div></div>
       </div>
 
       <div class="grid-row task" data-id="t3" tabindex="0" role="button" aria-expanded="false">
         <div class="rowlabel"><span class="t">Care Gap testing</span><span class="s">3 &middot; R&amp;D &middot; ALMOST DONE</span></div>
-        <div class="track"><div class="today" style="left:30.69%"></div><div class="bar crit" style="left:18.48%;width:12.87%">from 27 Jul</div></div>
+        <div class="track"><div class="today" style="left:24.11%"></div><div class="bar crit" style="left:18.77%;width:5.48%"></div></div>
       </div>
 
       <div class="grid-row task" data-id="t4" tabindex="0" role="button" aria-expanded="false">
-        <div class="rowlabel"><span class="t">Architecture decision document</span><span class="s">4 &middot; R&amp;D &middot; SINCE 24 AUG</span></div>
-        <div class="track"><div class="today" style="left:30.69%"></div><div class="bar crit" style="left:27.72%;width:5.94%">&rarr; 11 Sep</div></div>
+        <div class="rowlabel"><span class="t">Architecture decision document</span><span class="s">4 &middot; R&amp;D &middot; DUE 11 SEP</span></div>
+        <div class="track"><div class="today" style="left:24.11%"></div><div class="bar crit" style="left:22.6%;width:2.47%"></div></div>
       </div>
 
       <div class="grid-row band">
         <div class="rowlabel">Objective 2 delivery</div>
-        <div class="track"><div class="today" style="left:30.69%"></div><div class="summary-bar" style="left:40.26%;width:53.14%"></div></div>
+        <div class="track"><div class="today" style="left:24.11%"></div><div class="summary-bar" style="left:12.6%;width:37.26%"></div></div>
       </div>
 
       <div class="grid-row task" data-id="t5" tabindex="0" role="button" aria-expanded="false">
         <div class="rowlabel"><span class="t">Real-world data handling, Inbox</span><span class="s">5 &middot; R&amp;D &middot; 4 WORK PACKAGES</span></div>
-        <div class="track"><div class="today" style="left:30.69%"></div>
-          <div class="bar seg" style="left:40.26%;width:13.3%">Formats</div>
-          <div class="bar seg n2" style="left:53.56%;width:13.3%">Patient context</div>
-          <div class="bar seg n3" style="left:66.86%;width:13.3%">Confidence</div>
-          <div class="bar seg n4" style="left:80.16%;width:13.24%">Extraction &middot; GP trial</div>
+        <div class="track"><div class="today" style="left:24.11%"></div>
+          <div class="bar seg" style="left:27.81%;width:5.48%"></div>
+          <div class="bar seg n2" style="left:33.29%;width:5.48%"></div>
+          <div class="bar seg n3" style="left:38.77%;width:5.48%"></div>
+          <div class="bar seg n4" style="left:44.25%;width:5.61%"></div>
+        </div>
+      </div>
+
+      <div class="grid-row band">
+        <div class="rowlabel">Objective 3 delivery</div>
+        <div class="track"><div class="today" style="left:24.11%"></div><div class="summary-bar" style="left:25.21%;width:41.37%"></div></div>
+      </div>
+
+      <div class="grid-row task" data-id="o3" tabindex="0" role="button" aria-expanded="false">
+        <div class="rowlabel"><span class="t">Care Gap clinical accuracy</span><span class="s">6 &middot; R&amp;D &middot; 4 WORK PACKAGES</span></div>
+        <div class="track"><div class="today" style="left:24.11%"></div>
+          <div class="bar seg" style="left:25.21%;width:10.27%"></div>
+          <div class="bar seg n2" style="left:35.48%;width:10.41%"></div>
+          <div class="bar seg n3" style="left:45.89%;width:10.27%"></div>
+          <div class="bar seg n4" style="left:56.16%;width:10.42%"></div>
+        </div>
+      </div>
+
+      <div class="grid-row band">
+        <div class="rowlabel">Objective 4 delivery</div>
+        <div class="track"><div class="today" style="left:24.11%"></div><div class="summary-bar" style="left:62.6%;width:37.4%"></div></div>
+      </div>
+
+      <div class="grid-row task" data-id="o4" tabindex="0" role="button" aria-expanded="false">
+        <div class="rowlabel"><span class="t">Deployment across 10&ndash;20 practices</span><span class="s">7 &middot; R&amp;D &middot; 3 WORK PACKAGES</span></div>
+        <div class="track"><div class="today" style="left:24.11%"></div>
+          <div class="bar seg" style="left:62.6%;width:12.47%"></div>
+          <div class="bar seg n2" style="left:75.07%;width:12.46%"></div>
+          <div class="bar seg n3" style="left:87.53%;width:12.47%"></div>
         </div>
       </div>
 
       <div class="grid-row band">
         <div class="rowlabel">Capability Development</div>
-        <div class="track"><div class="today" style="left:30.69%"></div><div class="summary-bar" style="left:0%;width:100%"></div></div>
+        <div class="track"><div class="today" style="left:24.11%"></div><div class="summary-bar" style="left:0%;width:68.63%"></div></div>
       </div>
 
       <div class="grid-row task" data-id="r1" tabindex="0" role="button" aria-expanded="false">
-        <div class="rowlabel"><span class="t">R1 regulatory gap analysis</span><span class="s">6 &middot; CD &middot; SINCE 29 JUN</span></div>
-        <div class="track"><div class="today" style="left:30.69%"></div><div class="bar fade" style="left:9.24%;width:43%">terms agreed 29 Jun &middot; awaiting Buddle Findlay quote</div></div>
+        <div class="rowlabel"><span class="t">R1 regulatory gap analysis</span><span class="s">8 &middot; CD &middot; SINCE 29 JUN</span></div>
+        <div class="track"><div class="today" style="left:24.11%"></div><div class="bar fade" style="left:14.93%;width:37.67%">terms agreed 29 Jun</div></div>
       </div>
 
       <div class="grid-row task" data-id="r2" tabindex="0" role="button" aria-expanded="false">
-        <div class="rowlabel"><span class="t">R2 cross-border DPIA</span><span class="s">7 &middot; CD &middot; GATES OBJ 2</span></div>
-        <div class="track"><div class="today" style="left:30.69%"></div><div class="bar fade" style="left:34.5%;width:20%">approved 19 Aug &middot; before real data</div></div>
+        <div class="rowlabel"><span class="t">R2 cross-border DPIA</span><span class="s">9 &middot; CD &middot; GATES OBJ 2</span></div>
+        <div class="track"><div class="today" style="left:24.11%"></div><div class="bar fade" style="left:25.62%;width:22.74%">approved 19 Aug</div></div>
+      </div>
+
+      <div class="grid-row task" data-id="r3" tabindex="0" role="button" aria-expanded="false">
+        <div class="rowlabel"><span class="t">R3 clinical safety advisory</span><span class="s">10 &middot; CD &middot; GATED ON OBJ 3</span></div>
+        <div class="track"><div class="today" style="left:24.11%"></div><div class="bar fade" style="left:48.49%;width:29.18%">3 sessions &middot; indicative</div></div>
+      </div>
+
+      <div class="grid-row task" data-id="r4" tabindex="0" role="button" aria-expanded="false">
+        <div class="rowlabel"><span class="t">R4 ongoing regulatory adviser</span><span class="s">11 &middot; CD &middot; ACROSS OBJ 1&ndash;4</span></div>
+        <div class="track"><div class="today" style="left:24.11%"></div><div class="bar fade" style="left:24.11%;width:44.52%">6 sessions &middot; none used yet</div></div>
+      </div>
+
+      <div class="grid-row task" data-id="r5" tabindex="0" role="button" aria-expanded="false">
+        <div class="rowlabel"><span class="t">R5 governance and templates</span><span class="s">12 &middot; CD &middot; LATE, BY DESIGN</span></div>
+        <div class="track"><div class="today" style="left:24.11%"></div><div class="bar fade" style="left:42.33%;width:26.3%">after R1&ndash;R4 &middot; indicative</div></div>
       </div>
 
       <div class="grid-row task" data-id="i1" tabindex="0" role="button" aria-expanded="false">
-        <div class="rowlabel"><span class="t">I1 experiment tracking</span><span class="s">8 &middot; CD &middot; SPEND HELD</span></div>
-        <div class="track"><div class="today" style="left:30.69%"></div><div class="bar blocked open-left" style="left:0%;width:38.61%">in contact since May &middot; spend held to 11 Sep</div></div>
+        <div class="rowlabel"><span class="t">I1 experiment tracking</span><span class="s">13 &middot; CD &middot; SPEND HELD</span></div>
+        <div class="track"><div class="today" style="left:24.11%"></div><div class="bar blocked" style="left:6.85%;width:20.27%">spend held to 11 Sep</div></div>
+      </div>
+
+      <div class="grid-row task" data-id="i2" tabindex="0" role="button" aria-expanded="false">
+        <div class="rowlabel"><span class="t">I2 LLM methods advisory</span><span class="s">14 &middot; CD &middot; NO VENDOR</span></div>
+        <div class="track"><div class="today" style="left:24.11%"></div><div class="bar blocked open-left" style="left:6.85%;width:20.27%">no vendor &middot; shuts 26 Sep</div></div>
       </div>
 
       <div class="grid-row task" data-id="cd3" tabindex="0" role="button" aria-expanded="false">
-        <div class="rowlabel"><span class="t">CD-3 project management coaching</span><span class="s">9 &middot; CD &middot; ONGOING</span></div>
-        <div class="track"><div class="today" style="left:30.69%"></div><div class="bar ok open-left" style="left:0%;width:100%">running since May 2026 &middot; Session 2 on 3 Sep &middot; to Jun 2027</div></div>
+        <div class="rowlabel"><span class="t">CD-3 project management coaching</span><span class="s">15 &middot; CD &middot; ONGOING</span></div>
+        <div class="track"><div class="today" style="left:24.11%"></div><div class="bar ok" style="left:6.85%;width:57.67%">since May 2026 &middot; Session 2 on 3 Sep &middot; to Jun 2027</div></div>
       </div>
 
       <div class="grid-row band">
         <div class="rowlabel">Programme Operations</div>
-        <div class="track"><div class="today" style="left:30.69%"></div><div class="summary-bar" style="left:20.13%;width:74.59%"></div></div>
+        <div class="track"><div class="today" style="left:24.11%"></div><div class="summary-bar" style="left:0%;width:100%"></div></div>
       </div>
 
       <div class="grid-row task" data-id="ops" tabindex="0" role="button" aria-expanded="false">
-        <div class="rowlabel"><span class="t">Quarterly claim and report</span><span class="s">10 &middot; OPS</span></div>
-        <div class="track"><div class="today" style="left:30.69%"></div>
-          <div class="bar" style="left:20.13%;width:14.85%">Q2</div>
-          <div class="bar" style="left:40.26%;width:24.76%">Q3</div>
-          <div class="bar" style="left:70.63%;width:24.09%">Q4</div>
+        <div class="rowlabel"><span class="t">Quarterly claim and report</span><span class="s">16 &middot; OPS &middot; 8 CLAIMS &middot; Q8 SUBMITS OFF-CHART</span></div>
+        <div class="track"><div class="today" style="left:24.11%"></div>
+          <div class="bar done" style="left:6.85%;width:6.44%">Q1</div>
+          <div class="bar" style="left:19.45%;width:6.58%">Q2</div>
+          <div class="bar" style="left:32.05%;width:6.03%">Q3</div>
+          <div class="bar" style="left:44.66%;width:5.75%">Q4</div>
+          <div class="bar" style="left:56.85%;width:6.16%">Q5</div>
+          <div class="bar" style="left:69.45%;width:6.17%">Q6</div>
+          <div class="bar" style="left:82.05%;width:6.03%">Q7</div>
+          <div class="bar fade" style="left:94.66%;width:5.34%">Q8</div>
         </div>
       </div>
     </div>
@@ -322,12 +385,19 @@
     <span><i class="sw done"></i> Done</span>
     <span><i class="sw crit"></i> Critical path</span>
     <span><i class="sw"></i> Task</span>
-    <span><i class="sw blocked"></i> Spend deliberately held</span>
+    <span><i class="sw blocked"></i> Blocked or deliberately held</span>
     <span><i class="sw ok"></i> Continuous</span>
     <span><i class="sw dia"></i> Hard deadline</span>
-    <span>Faded left edge = began before this chart</span>
-    <span>Faded edge = end genuinely uncertain</span>
+    <span>Faded left edge = start not recorded</span>
+    <span>Faded right edge = end genuinely uncertain</span>
+    <span>Segments = work packages, order indicative</span>
   </div>
+
+  <p class="footnote">Columns are the programme&rsquo;s own quarters, the same periods the claims are built on.
+  Capability Development bars are positioned by the R&amp;D objective each one gates, not by a contracted date:
+  those windows are indicative and are the least settled part of this plan.
+  Milestone diamonds are staggered on two levels so they do not overlap; read the date from the label, not the position.</p>
+
 
 </div>
 
@@ -347,42 +417,73 @@
       goal: "Establish whether the chosen architecture reaches the cardiovascular risk accuracy bar of 95%.",
       output: "Scored results against the synthetic dataset, with disagreements checked against the clinical rules.",
       dates: "27 July 2026 to now", gate: "Gates the architecture decision document.",
-      note: "On the critical path. Nothing downstream can be written until this produces numbers." },
+      note: "On the critical path. Nothing downstream can be written until this produces numbers. Status shown is as at 2 September." },
     t4: { title: "Objective 1 architecture decision document", status: ["Under way", "p-active"],
       goal: "Record the architecture choice and the evidence behind it, in a form MBIE can audit.",
       output: "A written decision document: what was chosen, why, the sovereignty assessment, and what is needed before real patient data.",
       dates: "Started 24 August 2026, due 11 September", gate: "Depends on both testing arms. One of five committed Objective 1 deliverables.",
-      note: "The end date is fixed and contractual. There is no slack behind it." },
-    t5: { title: "Objective 2 — real-world data handling for Inbox", status: ["In window, not started", "p-next"],
+      note: "The end date is fixed and contractual. There is no slack behind it. Status shown is as at 2 September." },
+    t5: { title: "Objective 2 \u2014 real-world data handling for Inbox", status: ["In window, not started", "p-next"],
       goal: "Find out whether the Objective 1 architecture survives contact with real, messy inbox data from many different labs and hospitals.",
-      output: "Four work packages, shown as segments. 1) Format handling across lab PDFs, letters, referrals and discharge summaries. 2) Applying patient-specific clinical context, including different cardiovascular thresholds for Māori and Pacific patients. 3) Confidence calibration good enough for safe automated action. 4) Complex extraction from discharge summaries, plus GP trial.",
-      dates: "~Oct 2026 – 11 Mar 2027", gate: "Needs Objective 1 closed, the DPIA in place, and sandbox access.",
+      output: "Four work packages, shown as segments. 1) Format handling across lab PDFs, letters, referrals and discharge summaries. 2) Applying patient-specific clinical context, including different cardiovascular thresholds for M\u0101ori and Pacific patients. 3) Confidence calibration good enough for safe automated action. 4) Complex extraction from discharge summaries, plus GP trial.",
+      dates: "Window open since 12 June 2026. Due 11 March 2027.", gate: "Needs Objective 1 closed, the DPIA in place, and sandbox access.",
       note: "Committed targets: 90% accuracy on 2,000-plus real items, zero unsafe automated actions across 1,000-plus edge cases, 85% discharge extraction, and at least five GPs with 80% trusting the suggestions. Package ordering is indicative, not yet sequenced." },
-    r1: { title: "R1 — regulatory gap analysis and roadmap", status: ["In flight", "p-active"],
+    o3: { title: "Objective 3 \u2014 clinical accuracy validation for Care Gap detection", status: ["In window, not started", "p-next"],
+      goal: "Make the cardiovascular and diabetes calculations correct in the awkward cases, and build equity prioritisation in without creating a new bias.",
+      output: "Four work packages, shown as segments. 1) Calculation accuracy when variables are missing, contradictory or extreme, including patients over 85. 2) Handling genuine clinical uncertainty, such as an HbA1c of 63 against a threshold of 64, and knowing when to defer to the GP instead of suggesting. 3) Equity prioritisation for M\u0101ori and Pacific patients, validated so it does not under-alert anyone else. 4) If time allows, COPD, heart failure and chronic kidney disease using the same approach.",
+      dates: "Window open since 12 September 2026. Due 11 July 2027.", gate: "Builds on Objective 1's architecture and Objective 2's real-data handling. R3 clinical safety advice is sequenced against it.",
+      note: "Committed targets: 95% cardiovascular risk calculation accuracy on 1,000-plus records including edge cases, 85% agreement with a GP audit on care gap decisions, and documented evidence that the equity weighting introduces no new bias across practice populations. Package ordering is indicative, not yet sequenced." },
+    o4: { title: "Objective 4 \u2014 performance validation and real-world deployment", status: ["Not started", "p-next"],
+      goal: "Measure the whole system in real general practices and show it holds up clinically, safely and operationally at scale.",
+      output: "Three work packages, shown as segments. 1) Deploy to 10 to 20 practices chosen for spread: urban and rural, high and low deprivation, Medtech and Indici. 2) Six to nine months of continuous measurement, with monthly GP interviews about trust and failures. 3) The final R&D report, plus written failure modes and how performance varies by practice type.",
+      dates: "12 June 2027 to 11 March 2028, the end of the grant.", gate: "Needs Objectives 1 to 3 complete and both sandbox integrations working.",
+      note: "The widest target set in the programme: 90% triage accuracy across practices, 95% cardiovascular calculation accuracy, response under 5 seconds at the 95th percentile, 99.5% uptime, zero unsafe automated actions and zero missed urgent items in production, at least 30% less inbox time per GP, and 80% of pilot GPs still using it after six months. Package ordering is indicative, not yet sequenced." },
+    r1: { title: "R1 \u2014 regulatory gap analysis and roadmap", status: ["In flight", "p-active"],
       goal: "Know what regulation actually applies to these tools, and what has to be fixed before real patient data.",
       output: "A written gap analysis and a remediation roadmap.",
       dates: "Terms agreed 29 June 2026. End indicative.", gate: "Informs everything downstream in Objective 2.",
       note: "Buddle Findlay have held both privacy impact assessments since 19 August; their scope and quote are awaited. No spend committed yet." },
-    r2: { title: "R2 — cross-border data handling DPIA", status: ["Ready to start", "p-next"],
+    r2: { title: "R2 \u2014 cross-border data handling DPIA", status: ["Ready to start", "p-next"],
       goal: "Prove that handling patient data across borders is lawful, before any real patient data is touched.",
       output: "A completed data protection impact assessment covering both tools.",
       dates: "Soon. Must land before real data.", gate: "Gates Objective 2.",
       note: "MBIE approved the variation on 19 August, so the block on spending is lifted." },
-    i1: { title: "I1 — experiment tracking and model registry", status: ["Spend held", "p-held"],
+    r3: { title: "R3 \u2014 clinical safety advisory", status: ["Not started", "p-next"],
+      goal: "Build a defensible clinical safety case for an AI that assists but never decides.",
+      output: "Clinical safety validation reports across three advisory sessions.",
+      dates: "Indicative. Sequenced against Objective 3 and the practice trials.", gate: "The prerequisites are ours to write first, so this cannot start until the safety documentation exists in draft.",
+      note: "The bar's position reflects its gate, not a contracted date. Like every Capability Development line here, it is indicative." },
+    r4: { title: "R4 \u2014 ongoing regulatory adviser", status: ["Not started", "p-next"],
+      goal: "Keep expert regulatory advice available as compliance obligations get harder through the programme.",
+      output: "Roughly six advisory sessions, drawn down as needed.",
+      dates: "Spread across Objectives 1 to 4, to 26 July 2027.", gate: "None. It is deliberately not front-loaded.",
+      note: "None of the sessions have been used yet. This is the flexible line, held back so it is available when a question actually arises rather than spent early." },
+    r5: { title: "R5 \u2014 governance frameworks and compliance templates", status: ["Not started", "p-next"],
+      goal: "Leave behind reusable compliance infrastructure rather than one-off documents.",
+      output: "Governance frameworks, checklists, data processing agreement templates and incident procedures.",
+      dates: "Late in the programme, by design. Indicative.", gate: "Deliberately last, once the patterns are known from R1 to R4.",
+      note: "Writing templates before the real compliance patterns are known produces templates nobody uses. The lateness is the plan, not a slip." },
+    i1: { title: "I1 \u2014 experiment tracking and model registry", status: ["Spend held", "p-held"],
       goal: "Make results reproducible and auditable, so a number quoted to MBIE traces back to a logged run rather than a memory.",
       output: "A configured experiment tracking system, a model registry, and dataset lineage.",
-      dates: "In contact since May 2026. Spend held until 11 Sep.", gate: "Its funding window closes 26 September.",
+      dates: "In contact since May 2026. Spend held until 11 Sep.", gate: "Its funding window shuts 26 September.",
       note: "The vendor owes an outline. The deferral is deliberate, not drift, and will be stated in the Q2 progress report. The stream's own principle: a result without a logged run is hearsay at audit." },
-    cd3: { title: "CD-3 — project management coaching", status: ["Continuous", "p-cont"],
+    i2: { title: "I2 \u2014 LLM methods advisory", status: ["No vendor", "p-held"],
+      goal: "Build the capability to design and measure experiments properly, rather than learning it by trial and error mid-programme.",
+      output: "Evaluation frameworks, experiment design templates and advisory reports.",
+      dates: "Funding window shuts 26 September 2026.", gate: "Supports Objectives 1 and 2, so its usefulness is highest now and falls after.",
+      note: "The weakest line in the Capability Development programme. Three sourcing rounds have not found a provider able to use the full line, and the window shuts in under a month. The bar\u2019s left edge is masked because no start date for the sourcing is recorded anywhere. It is on this chart precisely so it is not quietly forgotten." },
+    cd3: { title: "CD-3 \u2014 project management, training and coaching", status: ["Continuous", "p-cont"],
       goal: "Ting runs the R&D programme independently.",
-      output: "Coaching session reports, a configured agile system with Kanban and a 24-month roadmap, budget tracking, risk register templates, vendor management workflows, and documented evidence of her progression.",
-      dates: "Running since May 2026, continuous to 26 Jun 2027", gate: "None. Runs alongside everything.",
-      note: "This chart is itself one of the outputs. Session 2 is on 3 September." },
+      output: "One row covering both funded parts, the intensive setup and the ongoing coaching sessions, because they are the same engagement. Outputs: coaching session reports, a configured agile system with Kanban and a 24-month roadmap, budget tracking, risk register templates, vendor management workflows, and documented evidence of her progression.",
+      dates: "Running since May 2026, continuous to 26 June 2027", gate: "None. Runs alongside everything.",
+      note: "This chart is itself one of the outputs. Session 2 was scheduled for 3 September." },
     ops: { title: "Quarterly claim and progress report", status: ["Q2 building", "p-active"],
       goal: "Claim the funding actually spent, and tell MBIE how the research is going.",
-      output: "A cost report reconciling time and spend, plus a progress narrative, submitted through the Forge portal.",
-      dates: "Q2 ~18 Sep · Q3 ~15 Dec · Q4 ~mid-Mar 27", gate: "Each claim waits for the pay run that closes its period.",
-      note: "The claim and the narrative submit together. Dates shown are realistic submission, not the earlier nominal dates the contract prints." }
+      output: "A cost report reconciling time and spend, plus a progress narrative, submitted through the Forge portal. Eight of them across the grant.",
+      dates: "Q1 submitted 17 Jun 2026 and paid. Q2 ~18 Sep 26 \u00b7 Q3 ~15 Dec 26 \u00b7 Q4 ~15 Mar 27 \u00b7 Q5 ~15 Jun 27 \u00b7 Q6 ~15 Sep 27 \u00b7 Q7 ~15 Dec 27 \u00b7 Q8 after the grant closes.",
+      gate: "Each claim waits for the pay run that closes its period.",
+      note: "The claim and the narrative submit together. Dates shown are realistic submission, not the earlier nominal dates the contract prints. Q8 covers work to 11 March 2028 and is therefore submitted after the contract end date, which is why its bar runs to the edge of the chart." }
   };
 
   const rows = Array.from(document.querySelectorAll(".task"));
